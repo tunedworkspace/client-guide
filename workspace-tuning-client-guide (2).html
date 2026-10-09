@@ -1,0 +1,1307 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Workspace Tuning: Design for cognition, flow, and adoption</title>
+<style>
+:root{--ink:#111;--muted:#646464;--paper:#fff;--soft:#f5f5f3;--line:#d8d8d4;--max:1180px}
+*{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;background:var(--paper);color:var(--ink);font-family:Arial,Helvetica,sans-serif;line-height:1.5} a{color:inherit}
+.skip{position:absolute;left:-999px;top:8px;background:#111;color:#fff;padding:12px;z-index:20}.skip:focus{left:8px}
+.topbar{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.95);border-bottom:1px solid var(--line);backdrop-filter:blur(12px)}
+.topbar-inner{max-width:var(--max);margin:auto;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:14px 28px}
+.brand{font-size:14px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}.progress{font-size:13px;color:var(--muted)}
+.hero{max-width:var(--max);margin:auto;padding:72px 28px 42px;display:grid;grid-template-columns:minmax(0,1.35fr) minmax(260px,.65fr);gap:64px;align-items:end}
+.eyebrow{font-size:13px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;margin:0 0 18px} h1{font-size:clamp(44px,7vw,88px);line-height:.96;letter-spacing:-.055em;margin:0;max-width:900px}
+.lede{font-size:clamp(18px,2vw,23px);line-height:1.45;margin:28px 0 0;max-width:720px;color:#333}.hero-note{border-left:2px solid #111;padding-left:24px;font-size:15px;color:#333}
+.hero-note strong{display:block;color:#111;font-size:17px;margin-bottom:8px}
+.phase-strip{max-width:var(--max);margin:0 auto 64px;padding:0 28px;display:grid;grid-template-columns:repeat(3,1fr)}.phase{padding:22px 24px;border:1px solid var(--line);margin-left:-1px}.phase b{display:block;font-size:12px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px}.phase span{font-size:15px;color:#444}
+.layout{max-width:var(--max);margin:auto;padding:0 28px 100px;display:grid;grid-template-columns:minmax(0,1fr);align-items:start}
+.side{position:sticky;top:72px}.side h2{font-size:12px;letter-spacing:.12em;text-transform:uppercase;margin:0 0 12px}.side nav{display:grid;border-top:1px solid var(--line)}.side a{display:grid;grid-template-columns:28px 1fr;gap:8px;align-items:center;min-height:44px;text-decoration:none;padding:10px 8px;margin:0 -8px;border-bottom:1px solid var(--line);font-size:14px;color:#4b4b4b;cursor:pointer}.side a:hover,.side a:focus-visible,.side a.active{color:#000;font-weight:700;background:var(--soft);outline:none}.side a:focus-visible{outline:2px solid #111;outline-offset:2px}.side a span{font-size:11px;color:#888}
+.controls{display:flex;gap:8px;margin-top:18px}button{font:700 13px Arial;border:1px solid #111;background:#fff;color:#111;padding:10px 12px;min-height:44px;cursor:pointer}button:hover,button:focus-visible{background:#111;color:#fff;outline:2px solid #111;outline-offset:2px}
+.content-head{display:flex;justify-content:space-between;align-items:end;gap:20px;margin-bottom:20px}.content-head h2{font-size:26px;margin:0;letter-spacing:-.03em}.content-head p{font-size:14px;color:var(--muted);margin:0;max-width:420px}
+.chapter{border-top:1px solid #111;scroll-margin-top:84px}.chapter:last-child{border-bottom:1px solid #111}summary{list-style:none;display:grid;grid-template-columns:42px 1fr 44px;gap:14px;align-items:center;padding:14px 0;cursor:pointer}summary::-webkit-details-marker{display:none}summary:focus-visible{outline:2px solid #111;outline-offset:4px}.num{font-size:12px;color:#777;align-self:start;padding-top:5px}.summary-copy{display:grid;gap:5px}.summary-copy strong{font-size:22px;letter-spacing:-.025em}.summary-copy>span{font-size:14px;color:var(--muted);max-width:650px}.toggle{width:36px;height:36px;border:1px solid #111;position:relative;justify-self:end}.toggle:before,.toggle:after{content:'';position:absolute;background:#111;left:9px;right:9px;top:17px;height:1px}.toggle:after{transform:rotate(90deg);transition:transform .2s}details[open] .toggle:after{transform:rotate(0)}
+.frame-wrap{border:1px solid var(--line);margin:0;background:#fff;overflow:hidden}iframe{display:block;width:100%;height:720px;border:0;background:#fff}.frame-wrap.fixed iframe{height:650px}
+.endnote{margin-top:54px;padding:32px;border:1px solid #111}.endnote h2{font-size:30px;margin:0 0 8px;letter-spacing:-.03em}.endnote p{margin:0;color:#444}.back{text-decoration:none;border:1px solid #111;padding:12px 16px;font-weight:700;font-size:13px}.back:hover{background:#111;color:#fff}
+footer{border-top:1px solid var(--line);padding:28px;text-align:center;font-size:13px;color:#666}
+@media(max-width:860px){.hero{grid-template-columns:1fr;gap:32px;padding-top:52px}.phase-strip{grid-template-columns:1fr}.phase{margin-top:-1px;margin-left:0}.layout{grid-template-columns:1fr}.side{position:static}.side nav{grid-template-columns:repeat(2,1fr);column-gap:20px}.content-head{margin-top:10px}}
+@media(max-width:560px){.topbar-inner{padding:12px 18px}.progress{display:none}.hero{padding:44px 18px 32px}h1{font-size:46px}.phase-strip{padding:0 18px;margin-bottom:42px}.layout{padding:0 18px 72px;gap:34px}.side nav{grid-template-columns:1fr}.content-head{display:block}.content-head p{margin-top:8px}summary{grid-template-columns:28px 1fr 40px;padding:12px 0}.summary-copy strong{font-size:19px}.frame-wrap{margin-left:-18px;margin-right:-18px;border-left:0;border-right:0}.frame-wrap.fixed iframe{height:560px}.endnote{grid-template-columns:1fr;padding:24px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+</style></head><body><a class="skip" href="#chapters">Skip to chapters</a>
+<header class="topbar"><div class="topbar-inner"><div class="brand">Workspace Tuning</div><div class="progress" id="progress">1 of 10 sections open</div></div></header>
+<main><section class="hero"><div><p class="eyebrow">The approach</p><h1>Design for cognition, flow, and adoption.</h1><p class="lede">The work brings people, information, workflows, and technology into one coherent operating environment, then builds the clarity, training, and ownership needed to make it last.</p></div><div class="hero-note"><strong>Explore at your own pace.</strong>Open any chapter for the full detail. The page keeps the original depth while giving you a clearer path through the approach.</div></section>
+<section class="phase-strip" aria-label="The three phases"><div class="phase"><b>01 · Diagnose</b><span>See how work really moves and where friction lives.</span></div><div class="phase"><b>02 · Design</b><span>Turn patterns into clear structures, workflows, and decisions.</span></div><div class="phase"><b>03 · Implement</b><span>Build, test, teach, refine, and transfer ownership.</span></div></section>
+<div class="layout" id="chapters"><section><div class="content-head"><div><p class="eyebrow">10 chapters</p><h2>From philosophy to practical delivery</h2></div></div><details class="chapter" id="overview" data-title="overview" open>
+      <summary><span class="num">01</span><span class="summary-copy"><strong>Overview</strong><span>See how diagnosis, design, and implementation become a sustainable way of working</span></span><span class="toggle" aria-hidden="true"></span></summary>
+      <div class="frame-wrap"><iframe id="frame-overview" title="Overview" loading="eager" srcdoc="&lt;!DOCTYPE html&gt;
+
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;utf-8&quot;/&gt;&lt;meta content=&quot;width=device-width,initial-scale=1&quot; name=&quot;viewport&quot;/&gt;
+&lt;title&gt;How Workspace Tuning Is Built: Black &amp;amp; White&lt;/title&gt;
+&lt;style&gt;
+:root{--ink:#000;--muted:#000;--paper:#fff;--soft:#fff;--line:#000;--blue:#000;--blue-soft:#fff;--green:#000;--green-soft:#fff;--orange:#000;--orange-soft:#fff}
+*{box-sizing:border-box}html,body{margin:0;background:#fff;color:var(--ink);font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,Arial,sans-serif}body{padding:7px 16px}.page{width:min(1120px,100%);min-height:0;margin:auto;background:var(--paper);border:1px solid var(--line);border-radius:12px;overflow:hidden;box-shadow:0 1px 2px rgba(0,0,0,.05),0 8px 28px rgba(0,0,0,.05)}
+header{display:grid;grid-template-columns:1.25fr .75fr;gap:44px;padding:34px 44px 26px;border-bottom:1px solid var(--line);align-items:end}.eyebrow{font-size:13px;line-height:1.2;text-transform:uppercase;letter-spacing:.14em;font-weight:750;color:var(--blue);margin-bottom:16px}h1{font-size:clamp(38px,5vw,64px);line-height:.98;letter-spacing:-.052em;margin:0;max-width:720px}.intro{font-size:18px;line-height:1.48;color:var(--muted);margin:0;max-width:390px}.intro strong{color:var(--ink)}
+.main{padding:24px 44px 26px}.flow{display:grid;grid-template-columns:1fr 38px 1fr 38px 1fr;align-items:stretch}.stage{padding:18px;border:1px solid var(--line);border-radius:10px;background:var(--soft)}.stage .num{width:30px;height:30px;display:grid;place-items:center;border-radius:50%;font-size:14px;font-weight:800;background:#fff;color:#000;border:2px solid #000;margin-bottom:14px}.stage h2{font-size:24px;letter-spacing:-.025em;margin:0 0 7px}.stage p{font-size:15px;line-height:1.45;color:var(--muted);margin:0}.arrow{display:grid;place-items:center;color:var(--blue);font-size:27px;font-weight:700}
+.section-label{font-size:12px;text-transform:uppercase;letter-spacing:.13em;font-weight:800;color:var(--muted);margin:20px 0 10px}.lower{display:grid;grid-template-columns:.9fr 1.1fr;gap:18px}.panel{border:1px solid var(--line);border-radius:10px;padding:17px}.panel.problem{background:var(--orange-soft);border-color:#000}.panel.result{background:var(--blue-soft);border-color:#000}.panel-title{display:flex;align-items:center;gap:10px;margin-bottom:10px}.icon{width:30px;height:30px;border-radius:8px;display:grid;place-items:center;font-weight:900;background:#fff;border:1px solid #000}.panel h3{font-size:20px;letter-spacing:-.02em;margin:0}.pain{display:grid;grid-template-columns:1fr 1fr;gap:9px}.pain span,.deliverables span{font-size:14px;line-height:1.25;background:#fff;border:1px solid #000;border-radius:7px;padding:8px 10px}.deliverables{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.deliverables span:last-child{grid-column:span 2}.deliverables b{display:block;font-size:14px;margin-bottom:3px}.deliverables small{display:block;color:var(--muted);font-size:12px;line-height:1.32}
+.outcome{margin-top:14px;display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;background:#fff;color:#000;border:2px solid #000;border-radius:10px;padding:16px 20px}.outcome h3{font-size:22px;line-height:1.15;letter-spacing:-.025em;margin:0 0 5px}.outcome p{font-size:14px;line-height:1.4;color:#000;margin:0}.outcome .promise{font-size:18px;line-height:1.2;font-weight:750;text-align:right;max-width:260px}.accent{color:#000}
+footer{display:flex;justify-content:space-between;gap:24px;padding:13px 44px;border-top:1px solid var(--line);font-size:12px;line-height:1.4;color:var(--muted)}footer strong{color:var(--ink)}
+@media(max-width:760px){body{padding:0}.page{border:0;border-radius:0;box-shadow:none}header{grid-template-columns:1fr;gap:20px;padding:32px 22px 26px}h1{font-size:42px}.main{padding:24px 22px 30px}.flow{grid-template-columns:1fr}.arrow{height:34px;transform:rotate(90deg)}.lower{grid-template-columns:1fr}.pain,.deliverables{grid-template-columns:1fr}.deliverables span:last-child{grid-column:auto}.outcome{grid-template-columns:1fr}.outcome .promise{text-align:left;max-width:none}footer{padding:16px 22px;flex-direction:column;gap:4px}}
+
+&lt;/style&gt;
+&lt;style&gt;
+html{background:#fff!important;color:#111!important;overflow-x:hidden!important}
+body{margin:0!important;filter:grayscale(1);background:#fff!important;overflow-x:hidden!important}
+*{box-sizing:border-box} a{color:#111!important}
+@media(max-width:600px){body{padding-left:0!important;padding-right:0!important}}
+&lt;/style&gt;&lt;/head&gt;
+&lt;body&gt;
+&lt;article class=&quot;page&quot;&gt;
+&lt;header&gt;
+&lt;div&gt;&lt;h1&gt;Designing better ways of working&lt;/h1&gt;&lt;/div&gt;
+&lt;p class=&quot;intro&quot;&gt;The approach combines &lt;strong&gt;operations&lt;/strong&gt; and &lt;strong&gt;organizational psychology&lt;/strong&gt; to turn scattered people, tools, and information into coordinated action.&lt;/p&gt;
+&lt;/header&gt;
+&lt;main class=&quot;main&quot;&gt;
+&lt;div aria-label=&quot;The three-stage approach&quot; class=&quot;flow&quot;&gt;
+&lt;section class=&quot;stage&quot;&gt;&lt;div class=&quot;num&quot;&gt;1&lt;/div&gt;&lt;h2&gt;Diagnose&lt;/h2&gt;&lt;p&gt;Observe the real experience, uncover recurring friction, and identify what matters most.&lt;/p&gt;&lt;/section&gt;
+&lt;div aria-hidden=&quot;true&quot; class=&quot;arrow&quot;&gt;→&lt;/div&gt;
+&lt;section class=&quot;stage&quot;&gt;&lt;div class=&quot;num&quot;&gt;2&lt;/div&gt;&lt;h2&gt;Design&lt;/h2&gt;&lt;p&gt;Translate patterns into a clear operating model, information structure, and workflows.&lt;/p&gt;&lt;/section&gt;
+&lt;div aria-hidden=&quot;true&quot; class=&quot;arrow&quot;&gt;→&lt;/div&gt;
+&lt;section class=&quot;stage&quot;&gt;&lt;div class=&quot;num&quot;&gt;3&lt;/div&gt;&lt;h2&gt;Implement&lt;/h2&gt;&lt;p&gt;Build, document, train, test, and refine until the new system is sustainable.&lt;/p&gt;&lt;/section&gt;
+&lt;/div&gt;
+&lt;div class=&quot;section-label&quot;&gt;From friction to a shared operating environment&lt;/div&gt;
+&lt;div class=&quot;lower&quot;&gt;
+&lt;section class=&quot;panel problem&quot;&gt;
+&lt;div class=&quot;panel-title&quot;&gt;&lt;div class=&quot;icon&quot;&gt;!&lt;/div&gt;&lt;h3&gt;What clients are carrying&lt;/h3&gt;&lt;/div&gt;
+&lt;div class=&quot;pain&quot;&gt;&lt;span&gt;Too many disconnected tools&lt;/span&gt;&lt;span&gt;Unclear ownership&lt;/span&gt;&lt;span&gt;Important context gets lost&lt;/span&gt;&lt;span&gt;Constant cognitive overload&lt;/span&gt;&lt;/div&gt;
+&lt;/section&gt;
+&lt;section class=&quot;panel result&quot;&gt;
+&lt;div class=&quot;panel-title&quot;&gt;&lt;div class=&quot;icon&quot;&gt;✓&lt;/div&gt;&lt;h3&gt;What gets delivered&lt;/h3&gt;&lt;/div&gt;
+&lt;div class=&quot;deliverables&quot;&gt;
+&lt;span&gt;&lt;b&gt;Workspace&lt;/b&gt;&lt;small&gt;Portal, dashboard, or knowledge hub&lt;/small&gt;&lt;/span&gt;
+&lt;span&gt;&lt;b&gt;Infrastructure&lt;/b&gt;&lt;small&gt;Databases, templates, workflows, automation&lt;/small&gt;&lt;/span&gt;
+&lt;span&gt;&lt;b&gt;Diagnosis&lt;/b&gt;&lt;small&gt;Findings, priorities, and plan&lt;/small&gt;&lt;/span&gt;
+&lt;span&gt;&lt;b&gt;Documentation&lt;/b&gt;&lt;small&gt;SOPs, guides, FAQs, and decisions&lt;/small&gt;&lt;/span&gt;
+&lt;span&gt;&lt;b&gt;Adoption&lt;/b&gt;&lt;small&gt;Training, coaching, iteration, and handoff&lt;/small&gt;&lt;/span&gt;
+&lt;/div&gt;
+&lt;/section&gt;
+&lt;/div&gt;
+&lt;section class=&quot;outcome&quot;&gt;
+&lt;div&gt;&lt;h3&gt;A complete system, not just advice.&lt;/h3&gt;&lt;p&gt;A diagnosed, designed, and implemented way of working, supported by the documentation and training needed to make it last.&lt;/p&gt;&lt;/div&gt;
+&lt;div class=&quot;promise&quot;&gt;Less cognitive overload.&lt;br/&gt;&lt;span class=&quot;accent&quot;&gt;More confident action.&lt;/span&gt;&lt;/div&gt;
+&lt;/section&gt;
+&lt;/main&gt;
+&lt;footer&gt;&lt;span&gt;&lt;strong&gt;The end goal:&lt;/strong&gt; People know what to do, where things live, and how decisions get made.&lt;/span&gt;&lt;span&gt;A second brain for an individual. A collective brain for a team.&lt;/span&gt;&lt;/footer&gt;
+&lt;/article&gt;
+&lt;script&gt;(()=&gt;{const send=()=&gt;parent.postMessage({type:&#x27;frame-size&#x27;,id:&#x27;overview&#x27;,height:Math.max(document.body.scrollHeight,document.documentElement.scrollHeight)},&#x27;*&#x27;);addEventListener(&#x27;load&#x27;,send);new ResizeObserver(send).observe(document.documentElement);setTimeout(send,120);setTimeout(send,700)})();&lt;/script&gt;&lt;/body&gt;
+&lt;/html&gt;
+"></iframe></div>
+    </details><details class="chapter" id="approach" data-title="approach &amp; philosophy">
+      <summary><span class="num">02</span><span class="summary-copy"><strong>Approach &amp; philosophy</strong><span>A practical, iterative method grounded in real behavior and clear ownership</span></span><span class="toggle" aria-hidden="true"></span></summary>
+      <div class="frame-wrap"><iframe id="frame-approach" title="Approach &amp; philosophy" loading="lazy" srcdoc="&lt;!DOCTYPE html&gt;
+
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;utf-8&quot;/&gt;
+&lt;meta content=&quot;width=device-width,initial-scale=1&quot; name=&quot;viewport&quot;/&gt;
+&lt;title&gt;Process &amp;amp; Philosophy | One-Page Explainer&lt;/title&gt;
+&lt;style&gt;
+:root{--ink:#0b0b0b;--paper:#fff;--soft:#f2f2f2;--line:#bdbdbd}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;background:var(--paper);color:var(--ink);font-family:Arial,Helvetica,sans-serif}
+body{padding:clamp(18px,3vw,38px)}
+main{max-width:1180px;margin:0 auto;border-top:3px solid var(--ink)}
+header{display:grid;grid-template-columns:1.15fr .85fr;gap:40px;padding:18px 0 22px;border-bottom:1px solid var(--ink)}
+.eyebrow,.number{font-size:12px;font-weight:700;letter-spacing:.15em;text-transform:uppercase}
+h1{font-size:clamp(42px,6vw,76px);line-height:.88;letter-spacing:-.06em;margin:14px 0 0}
+.lede{align-self:end;font-size:clamp(18px,2vw,25px);line-height:1.35;margin:0;max-width:500px}
+.lede b{background:var(--ink);color:var(--paper);padding:2px 5px}
+section{padding:18px 0;border-bottom:1px solid var(--ink)}
+.section-head{display:flex;justify-content:space-between;align-items:baseline;gap:20px;margin-bottom:20px}
+h2{font-size:clamp(22px,3vw,38px);letter-spacing:-.035em;margin:0}
+.process{display:grid;grid-template-columns:repeat(6,1fr);border:1px solid var(--ink)}
+.step{min-height:112px;padding:14px;display:flex;flex-direction:column;justify-content:space-between}
+.step+.step{border-left:1px solid var(--ink)}
+.step:nth-child(even){background:var(--soft)}
+.step strong{font-size:clamp(17px,1.8vw,24px)}
+.step span{font-size:12px;line-height:1.35;color:#4d4d4d}
+.grid{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--ink)}
+.card{min-height:124px;padding:18px;display:grid;grid-template-columns:38px 1fr;gap:10px;align-content:start}
+.card:nth-child(odd){border-right:1px solid var(--ink)}
+.card:nth-child(-n+2){border-bottom:1px solid var(--ink)}
+.card.dark{background:var(--ink);color:var(--paper)}
+.card .index{font-size:12px;font-weight:700;letter-spacing:.1em;padding-top:4px}
+h3{font-size:clamp(19px,2vw,27px);letter-spacing:-.02em;margin:0 0 9px}
+.card p{font-size:15px;line-height:1.42;margin:0;max-width:460px}
+footer{display:grid;grid-template-columns:1.25fr .75fr;gap:30px;padding:18px 0 0}
+.quote{font-family:Georgia,serif;font-size:clamp(24px,3.3vw,42px);line-height:1.1;letter-spacing:-.025em}
+.standards{border-left:1px solid var(--ink);padding-left:24px}
+.standards span{display:block;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;margin-bottom:12px}
+.standards ul{list-style:none;padding:0;margin:0;font-size:18px;line-height:1.55}
+.standards li:before{content:&#x27;• &#x27;;font-weight:700}
+
+.approach{display:grid;grid-template-columns:.8fr 1.2fr;gap:36px;align-items:center}
+.approach-copy p{font-size:17px;line-height:1.45;margin:12px 0 0;max-width:430px}
+.venn{position:relative;min-height:260px}
+.circle{position:absolute;top:0;width:260px;height:260px;border:2px solid var(--ink);border-radius:50%;display:grid;place-items:center;text-align:center;padding:44px;font-size:24px;font-weight:700;line-height:1.05}
+.circle span{position:absolute;top:50%;transform:translateY(-50%)}.circle.a{left:calc(50% - 225px)}.circle.b{right:calc(50% - 225px)}.circle.a span{left:28px}.circle.b span{right:28px}
+.intersection{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);background:var(--ink);color:var(--paper);padding:9px 10px;text-align:center;font-size:12px;font-weight:600;line-height:1.2;width:118px}
+@media(max-width:760px){body{padding:20px}header,footer{grid-template-columns:1fr}.lede{align-self:start}.process{grid-template-columns:1fr 1fr}.step{min-height:110px}.step+.step{border-left:0}.step:nth-child(even){border-left:1px solid var(--ink)}.step:nth-child(n+3){border-top:1px solid var(--ink)}.grid{grid-template-columns:1fr}.card{min-height:auto}.card:nth-child(odd){border-right:0}.card:nth-child(-n+3){border-bottom:1px solid var(--ink)}.standards{border-left:0;border-top:1px solid var(--ink);padding:20px 0 0}.approach{grid-template-columns:1fr;gap:18px}.venn{min-height:220px}.circle{width:210px;height:210px;padding:32px;font-size:20px}.circle.a{left:0}.circle.b{right:0}.circle.a span{left:14px}.circle.b span{right:14px}.intersection{width:108px;font-size:11px}}
+&lt;/style&gt;
+&lt;style&gt;
+html{background:#fff!important;color:#111!important;overflow-x:hidden!important}
+body{margin:0!important;filter:grayscale(1);background:#fff!important;overflow-x:hidden!important}
+*{box-sizing:border-box} a{color:#111!important}
+@media(max-width:600px){body{padding-left:0!important;padding-right:0!important}}
+&lt;/style&gt;&lt;/head&gt;
+&lt;body&gt;
+&lt;main&gt;
+&lt;header&gt;
+&lt;div&gt;&lt;h1&gt;Process &amp;amp;&lt;br/&gt;Philosophy&lt;/h1&gt;&lt;/div&gt;
+&lt;p class=&quot;lede&quot;&gt;Systems are designed around &lt;b&gt;how people actually work&lt;/b&gt;, then made understandable, usable, and independently owned.&lt;/p&gt;
+&lt;/header&gt;
+&lt;section&gt;
+&lt;div class=&quot;section-head&quot;&gt;&lt;h2&gt;Six moves. One accountable system.&lt;/h2&gt;&lt;span class=&quot;number&quot;&gt;01 · Process&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&quot;process&quot;&gt;
+&lt;div class=&quot;step&quot;&gt;&lt;strong&gt;Audit&lt;/strong&gt;&lt;span&gt;Map workflows, pain points, and day-to-day reality.&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&quot;step&quot;&gt;&lt;strong&gt;Design&lt;/strong&gt;&lt;span&gt;Shape the system around real behavior.&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&quot;step&quot;&gt;&lt;strong&gt;Build&lt;/strong&gt;&lt;span&gt;Turn the design into a working environment.&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&quot;step&quot;&gt;&lt;strong&gt;Iterate&lt;/strong&gt;&lt;span&gt;Adjust through usage and adoption evidence.&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&quot;step&quot;&gt;&lt;strong&gt;Educate&lt;/strong&gt;&lt;span&gt;Make the logic clear to the people using it.&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&quot;step&quot;&gt;&lt;strong&gt;Handover&lt;/strong&gt;&lt;span&gt;Transfer access, ownership, and documentation.&lt;/span&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/section&gt;
+&lt;section&gt;
+&lt;div class=&quot;section-head&quot;&gt;&lt;h2&gt;Where the approach lives&lt;/h2&gt;&lt;span class=&quot;number&quot;&gt;02 · Difference&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&quot;approach&quot;&gt;
+&lt;div class=&quot;approach-copy&quot;&gt;&lt;h3&gt;Human patterns meet durable structure.&lt;/h3&gt;&lt;p&gt;The work combines insight into how people behave with systems that make good work easier to sustain.&lt;/p&gt;&lt;/div&gt;
+&lt;div aria-label=&quot;Behavioral insight and system design overlap to form the approach&quot; class=&quot;venn&quot;&gt;
+&lt;div class=&quot;circle a&quot;&gt;&lt;span&gt;Behavioral&lt;br/&gt;insight&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&quot;circle b&quot;&gt;&lt;span&gt;System&lt;br/&gt;design&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&quot;intersection&quot;&gt;The approach lives here.&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/section&gt;
+&lt;section&gt;
+&lt;div class=&quot;section-head&quot;&gt;&lt;h2&gt;What guides the work&lt;/h2&gt;&lt;span class=&quot;number&quot;&gt;03 · Philosophy&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&quot;grid&quot;&gt;
+&lt;article class=&quot;card dark&quot;&gt;&lt;span class=&quot;index&quot;&gt;01&lt;/span&gt;&lt;div&gt;&lt;h3&gt;Reality before ideals&lt;/h3&gt;&lt;p&gt;Systems should reflect actual behavior, not an imagined perfect workflow.&lt;/p&gt;&lt;/div&gt;&lt;/article&gt;
+&lt;article class=&quot;card&quot;&gt;&lt;span class=&quot;index&quot;&gt;02&lt;/span&gt;&lt;div&gt;&lt;h3&gt;Evidence before assumptions&lt;/h3&gt;&lt;p&gt;The full system is not built upfront. Real use reveals what needs to change.&lt;/p&gt;&lt;/div&gt;&lt;/article&gt;
+&lt;article class=&quot;card&quot;&gt;&lt;span class=&quot;index&quot;&gt;03&lt;/span&gt;&lt;div&gt;&lt;h3&gt;Behavior + structure&lt;/h3&gt;&lt;p&gt;The approach blends behavioral insight with durable system design.&lt;/p&gt;&lt;/div&gt;&lt;/article&gt;
+&lt;article class=&quot;card dark&quot;&gt;&lt;span class=&quot;index&quot;&gt;04&lt;/span&gt;&lt;div&gt;&lt;h3&gt;Ownership, not dependence&lt;/h3&gt;&lt;p&gt;A clean handover leaves the system documented, maintainable, and truly yours.&lt;/p&gt;&lt;/div&gt;&lt;/article&gt;
+&lt;/div&gt;
+&lt;/section&gt;
+&lt;footer&gt;
+&lt;div class=&quot;quote&quot;&gt;Adjustment is not a correction to the process. It is part of the process.&lt;/div&gt;
+&lt;div class=&quot;standards&quot;&gt;&lt;span&gt;Every system must hold&lt;/span&gt;&lt;ul&gt;&lt;li&gt;Clarity&lt;/li&gt;&lt;li&gt;Usability&lt;/li&gt;&lt;li&gt;Long-term maintainability&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;
+&lt;/footer&gt;
+&lt;/main&gt;
+&lt;script&gt;(()=&gt;{const send=()=&gt;parent.postMessage({type:&#x27;frame-size&#x27;,id:&#x27;approach&#x27;,height:Math.max(document.body.scrollHeight,document.documentElement.scrollHeight)},&#x27;*&#x27;);addEventListener(&#x27;load&#x27;,send);new ResizeObserver(send).observe(document.documentElement);setTimeout(send,120);setTimeout(send,700)})();&lt;/script&gt;&lt;/body&gt;
+&lt;/html&gt;
+"></iframe></div>
+    </details><details class="chapter" id="systems" data-title="systems design">
+      <summary><span class="num">03</span><span class="summary-copy"><strong>Systems design</strong><span>Connect people, workflows, technology, governance, and learning as one coherent system</span></span><span class="toggle" aria-hidden="true"></span></summary>
+      <div class="frame-wrap"><iframe id="frame-systems" title="Systems design" loading="lazy" srcdoc="&lt;!DOCTYPE html&gt;
+
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;utf-8&quot;/&gt;
+&lt;meta content=&quot;width=device-width,initial-scale=1&quot; name=&quot;viewport&quot;/&gt;
+&lt;title&gt;Systems Design | One Page Explainer&lt;/title&gt;
+&lt;style&gt;
+:root{--ink:#0a0a0a;--paper:#fff;--soft:#f4f4f4;--mid:#575757;--line:#cfcfcf;--max:1180px}
+*{box-sizing:border-box}
+html{background:var(--paper);color:var(--ink);font-family:Arial,Helvetica,sans-serif;scroll-behavior:smooth}
+body{margin:0;background:var(--paper)}
+main{width:min(var(--max),calc(100% - 64px));margin:0 auto;padding:56px 0 72px}
+header{display:grid;grid-template-columns:1.3fr .7fr;gap:56px;padding-bottom:44px;border-bottom:3px solid var(--ink)}
+.eyebrow,.num{font:700 12px/1.2 Consolas,monospace;letter-spacing:.14em;text-transform:uppercase}
+h1{font-size:clamp(54px,8vw,104px);line-height:.88;letter-spacing:-.065em;margin:24px 0 28px;max-width:820px}
+.lede{font-size:clamp(20px,2.15vw,29px);line-height:1.3;letter-spacing:-.02em;margin:0;max-width:760px}
+.definition{align-self:end;border-top:2px solid var(--ink);padding-top:18px;font-size:16px;line-height:1.5;color:#222}
+.definition b{display:block;font-size:21px;line-height:1.2;margin-bottom:10px}
+.north{padding:42px 0;border-bottom:1px solid var(--ink);font:700 clamp(27px,3.65vw,48px)/1.1 Arial,Helvetica,sans-serif;letter-spacing:-.04em}
+.north em{font-family:Georgia,serif;font-weight:400}
+.section{display:grid;grid-template-columns:170px 1fr;border-bottom:1px solid var(--ink);padding:34px 0}
+.label{padding-right:24px}.label h2{font-size:18px;line-height:1.1;margin:10px 0 0;letter-spacing:-.02em}.content{min-width:0}
+.quad{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border:2px solid var(--ink)}
+.cell{padding:20px 18px;min-height:175px;border-right:1px solid var(--ink)}.cell:last-child{border-right:0}.cell h3,.card h3{font-size:19px;line-height:1.1;margin:0 0 10px;letter-spacing:-.02em}.cell p,.card p,.card li{font-size:15px;line-height:1.45;margin:0;color:#222}.cell small{display:block;margin-top:14px;font-size:12px;line-height:1.4;color:var(--mid)}
+.rule-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 32px}.rule{display:grid;grid-template-columns:34px 1fr;gap:10px;padding:13px 0;border-top:1px solid var(--line);font-size:17px;line-height:1.3}.rule:nth-child(-n+2){border-top:2px solid var(--ink)}.rule b{font-size:13px;font-family:Consolas,monospace}
+.flow{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:24px}.step{border:1.5px solid var(--ink);padding:14px 16px;font-size:16px;font-weight:700}.arrow{font-size:21px;font-weight:700}.note{font-size:18px;line-height:1.45;margin:0;max-width:850px}
+.layers{display:grid;grid-template-columns:repeat(5,1fr);border:2px solid var(--ink)}.layer{min-height:150px;padding:18px 14px;border-right:1px solid var(--ink);display:flex;flex-direction:column;justify-content:space-between}.layer:last-child{border-right:0}.layer b{font-size:17px}.layer span{font-size:12px;line-height:1.4;color:#333}
+.dual{display:grid;grid-template-columns:1fr 1fr;border:2px solid var(--ink)}.panel{padding:24px}.panel:first-child{background:var(--ink);color:var(--paper)}.panel h3{font-size:24px;margin:0 0 14px}.panel ul{padding-left:18px;margin:0}.panel li{font-size:15px;line-height:1.5;margin:4px 0}
+.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.card{border-top:2px solid var(--ink);padding:16px 2px 4px}.card ul{padding-left:18px;margin:8px 0 0}
+.ops{display:grid;grid-template-columns:1.05fr .95fr;gap:32px}.ops .big{font-size:clamp(24px,3vw,38px);line-height:1.15;letter-spacing:-.03em;margin:0}.plain-list{list-style:none;padding:0;margin:0;border-top:2px solid var(--ink)}.plain-list li{padding:10px 0;border-bottom:1px solid var(--line);font-size:15px;line-height:1.35}
+.measure{display:grid;grid-template-columns:1fr 1fr;gap:32px}.measure .quote{font:italic 26px/1.3 Georgia,serif;margin:0}.measure p{font-size:16px;line-height:1.5;margin:14px 0 0}
+.ethics{background:var(--ink);color:var(--paper);padding:28px;display:grid;grid-template-columns:1.15fr .85fr;gap:32px}.ethics .statement{font-size:clamp(28px,4vw,50px);line-height:1.06;letter-spacing:-.04em}.ethics p{margin:0;font-size:15px;line-height:1.5;color:#eee}
+footer{padding-top:40px}.closing{font-size:clamp(34px,5.4vw,70px);line-height:1;letter-spacing:-.05em;margin:0;max-width:1040px}.formula{margin:26px 0 0;font-size:15px;font-weight:700;letter-spacing:.04em}.credit{display:flex;justify-content:space-between;gap:20px;margin-top:46px;padding-top:16px;border-top:1px solid var(--ink);font:700 12px/1.3 Consolas,monospace;text-transform:uppercase;letter-spacing:.12em}
+@media(max-width:820px){main{width:min(100% - 36px,var(--max));padding-top:28px}header{grid-template-columns:1fr;gap:28px}.definition{max-width:650px}.section{grid-template-columns:1fr;gap:22px}.label{display:flex;align-items:baseline;gap:14px}.label h2{margin:0}.quad{grid-template-columns:1fr 1fr}.cell:nth-child(2){border-right:0}.cell:nth-child(-n+2){border-bottom:1px solid var(--ink)}.layers{grid-template-columns:1fr}.layer{min-height:0;border-right:0;border-bottom:1px solid var(--ink);gap:10px}.layer:last-child{border-bottom:0}.ops,.measure,.ethics{grid-template-columns:1fr}.rule-grid{grid-template-columns:1fr}.rule:nth-child(2){border-top:1px solid var(--line)}.rule:first-child{border-top:2px solid var(--ink)}}
+@media(max-width:520px){h1{font-size:54px}.quad,.dual,.cards{grid-template-columns:1fr}.cell{min-height:0;border-right:0;border-bottom:1px solid var(--ink)}.cell:last-child{border-bottom:0}.panel:first-child{border-bottom:1px solid var(--ink)}.flow{gap:6px}.step{padding:11px 12px;font-size:14px}.arrow{font-size:17px}.credit{flex-direction:column}}
+&lt;/style&gt;
+&lt;style&gt;
+html{background:#fff!important;color:#111!important;overflow-x:hidden!important}
+body{margin:0!important;filter:grayscale(1);background:#fff!important;overflow-x:hidden!important}
+*{box-sizing:border-box} a{color:#111!important}
+@media(max-width:600px){body{padding-left:0!important;padding-right:0!important}}
+&lt;/style&gt;&lt;/head&gt;
+&lt;body&gt;
+&lt;main&gt;
+&lt;header&gt;
+&lt;div&gt;&lt;div class=&quot;eyebrow&quot;&gt;Systems and tools&lt;/div&gt;&lt;h1&gt;Systems design,&lt;br/&gt;for humans.&lt;/h1&gt;&lt;p class=&quot;lede&quot;&gt;The participatory creation of an operating environment where people, information, workflows, technology, power, and learning can act coherently.&lt;/p&gt;&lt;/div&gt;
+&lt;div class=&quot;definition&quot;&gt;&lt;b&gt;Technology is only one layer.&lt;/b&gt;Systems design aligns the human, operational, technical, and learning conditions that shape how an organization works.&lt;/div&gt;
+&lt;/header&gt;
+&lt;div class=&quot;north&quot;&gt;A good system reduces &lt;em&gt;pain, confusion, cognitive overload,&lt;/em&gt; and unnecessary coordination so people can focus on judgment, creativity, relationships, and meaningful work.&lt;/div&gt;
+&lt;section class=&quot;section&quot;&gt;&lt;div class=&quot;label&quot;&gt;&lt;div class=&quot;num&quot;&gt;01&lt;/div&gt;&lt;h2&gt;Design the whole system&lt;/h2&gt;&lt;/div&gt;&lt;div class=&quot;content&quot;&gt;&lt;div class=&quot;quad&quot;&gt;
+&lt;div class=&quot;cell&quot;&gt;&lt;h3&gt;Human&lt;/h3&gt;&lt;p&gt;People, relationships, roles, power, incentives, capacity, training, and culture.&lt;/p&gt;&lt;small&gt;Design with the people doing the work.&lt;/small&gt;&lt;/div&gt;
+&lt;div class=&quot;cell&quot;&gt;&lt;h3&gt;Operational&lt;/h3&gt;&lt;p&gt;Workflows, handoffs, decisions, governance, meetings, communication, and ownership.&lt;/p&gt;&lt;small&gt;Make reality and responsibility explicit.&lt;/small&gt;&lt;/div&gt;
+&lt;div class=&quot;cell&quot;&gt;&lt;h3&gt;Technical&lt;/h3&gt;&lt;p&gt;Tools, databases, integrations, automation, permissions, and documentation.&lt;/p&gt;&lt;small&gt;Choose tools by workflow fit.&lt;/small&gt;&lt;/div&gt;
+&lt;div class=&quot;cell&quot;&gt;&lt;h3&gt;Learning&lt;/h3&gt;&lt;p&gt;Feedback, evaluation, reflection, knowledge creation, and adaptation.&lt;/p&gt;&lt;small&gt;Turn information into action.&lt;/small&gt;&lt;/div&gt;
+&lt;/div&gt;&lt;/div&gt;&lt;/section&gt;
+&lt;section class=&quot;section&quot;&gt;&lt;div class=&quot;label&quot;&gt;&lt;div class=&quot;num&quot;&gt;02&lt;/div&gt;&lt;h2&gt;Human-centered rules&lt;/h2&gt;&lt;/div&gt;&lt;div class=&quot;content&quot;&gt;&lt;div class=&quot;rule-grid&quot;&gt;
+&lt;div class=&quot;rule&quot;&gt;&lt;b&gt;01&lt;/b&gt;&lt;span&gt;Begin by asking, &lt;strong&gt;What do you need?&lt;/strong&gt;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;rule&quot;&gt;&lt;b&gt;02&lt;/b&gt;&lt;span&gt;Build around real work, not platform logic.&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&quot;rule&quot;&gt;&lt;b&gt;03&lt;/b&gt;&lt;span&gt;Make the people doing the work co-designers.&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;rule&quot;&gt;&lt;b&gt;04&lt;/b&gt;&lt;span&gt;Represent leadership and end-user perspectives.&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&quot;rule&quot;&gt;&lt;b&gt;05&lt;/b&gt;&lt;span&gt;Keep complexity within human capacity.&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;rule&quot;&gt;&lt;b&gt;06&lt;/b&gt;&lt;span&gt;Diagnose before prescribing.&lt;/span&gt;&lt;/div&gt;
+&lt;/div&gt;&lt;/div&gt;&lt;/section&gt;
+&lt;section class=&quot;section&quot;&gt;&lt;div class=&quot;label&quot;&gt;&lt;div class=&quot;num&quot;&gt;03&lt;/div&gt;&lt;h2&gt;Appreciative diagnosis&lt;/h2&gt;&lt;/div&gt;&lt;div class=&quot;content&quot;&gt;&lt;div class=&quot;cards&quot;&gt;
+&lt;div class=&quot;card&quot;&gt;&lt;h3&gt;Find what works&lt;/h3&gt;&lt;p&gt;Identify strengths, useful practices, informal expertise, and resilient workarounds.&lt;/p&gt;&lt;/div&gt;
+&lt;div class=&quot;card&quot;&gt;&lt;h3&gt;Map reality&lt;/h3&gt;&lt;p&gt;Observe how work moves, where decisions live, and where formal and informal roles diverge.&lt;/p&gt;&lt;/div&gt;
+&lt;div class=&quot;card&quot;&gt;&lt;h3&gt;Surface friction&lt;/h3&gt;&lt;p&gt;Locate gaps, overlaps, bottlenecks, unclear ownership, and capacity constraints.&lt;/p&gt;&lt;/div&gt;
+&lt;div class=&quot;card&quot;&gt;&lt;h3&gt;Listen widely&lt;/h3&gt;&lt;p&gt;Use surveys, interviews, observation, artifact reviews, meeting analysis, and workshops.&lt;/p&gt;&lt;/div&gt;
+&lt;/div&gt;&lt;/div&gt;&lt;/section&gt;
+&lt;section class=&quot;section&quot;&gt;&lt;div class=&quot;label&quot;&gt;&lt;div class=&quot;num&quot;&gt;04&lt;/div&gt;&lt;h2&gt;A nonlinear method&lt;/h2&gt;&lt;/div&gt;&lt;div class=&quot;content&quot;&gt;&lt;div class=&quot;flow&quot;&gt;&lt;span class=&quot;step&quot;&gt;Audit&lt;/span&gt;&lt;span class=&quot;arrow&quot;&gt;→&lt;/span&gt;&lt;span class=&quot;step&quot;&gt;Design&lt;/span&gt;&lt;span class=&quot;arrow&quot;&gt;→&lt;/span&gt;&lt;span class=&quot;step&quot;&gt;Build&lt;/span&gt;&lt;span class=&quot;arrow&quot;&gt;↔&lt;/span&gt;&lt;span class=&quot;step&quot;&gt;Educate&lt;/span&gt;&lt;span class=&quot;arrow&quot;&gt;→&lt;/span&gt;&lt;span class=&quot;step&quot;&gt;Handoff&lt;/span&gt;&lt;/div&gt;&lt;p class=&quot;note&quot;&gt;Prototype early. Test with real work. Return to discovery when the build reveals a missing question. Treat iteration as evidence, not failure.&lt;/p&gt;&lt;/div&gt;&lt;/section&gt;
+&lt;section class=&quot;section&quot;&gt;&lt;div class=&quot;label&quot;&gt;&lt;div class=&quot;num&quot;&gt;05&lt;/div&gt;&lt;h2&gt;Information architecture&lt;/h2&gt;&lt;/div&gt;&lt;div class=&quot;content&quot;&gt;&lt;div class=&quot;layers&quot;&gt;
+&lt;div class=&quot;layer&quot;&gt;&lt;b&gt;Company&lt;/b&gt;&lt;span&gt;Mission, directory, common resources, decisions&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;layer&quot;&gt;&lt;b&gt;Workflow&lt;/b&gt;&lt;span&gt;Purpose, owners, dependencies, current work&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;layer&quot;&gt;&lt;b&gt;Team&lt;/b&gt;&lt;span&gt;Detailed operations and restricted work&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;layer&quot;&gt;&lt;b&gt;Manager&lt;/b&gt;&lt;span&gt;Oversight across people and processes&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;layer&quot;&gt;&lt;b&gt;Individual&lt;/b&gt;&lt;span&gt;Personalized tasks, notes, meetings, views&lt;/span&gt;&lt;/div&gt;
+&lt;/div&gt;&lt;p class=&quot;note&quot; style=&quot;margin-top:18px&quot;&gt;&lt;strong&gt;Centralized truth. Contextual experience.&lt;/strong&gt; Keep one underlying source and provide many interfaces, views, and levels of detail.&lt;/p&gt;&lt;/div&gt;&lt;/section&gt;
+&lt;section class=&quot;section&quot;&gt;&lt;div class=&quot;label&quot;&gt;&lt;div class=&quot;num&quot;&gt;06&lt;/div&gt;&lt;h2&gt;Coherence and fit&lt;/h2&gt;&lt;/div&gt;&lt;div class=&quot;content&quot;&gt;&lt;div class=&quot;dual&quot;&gt;
+&lt;div class=&quot;panel&quot;&gt;&lt;h3&gt;Standardize orientation&lt;/h3&gt;&lt;ul&gt;&lt;li&gt;Navigation and terminology&lt;/li&gt;&lt;li&gt;Ownership and metadata&lt;/li&gt;&lt;li&gt;Document structures&lt;/li&gt;&lt;li&gt;Authoritative locations&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;
+&lt;div class=&quot;panel&quot;&gt;&lt;h3&gt;Customize meaningful difference&lt;/h3&gt;&lt;ul&gt;&lt;li&gt;Role-specific dashboards&lt;/li&gt;&lt;li&gt;Team-specific tools&lt;/li&gt;&lt;li&gt;Access and confidentiality&lt;/li&gt;&lt;li&gt;Cognitive and visual preferences&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;
+&lt;/div&gt;&lt;/div&gt;&lt;/section&gt;
+&lt;section class=&quot;section&quot;&gt;&lt;div class=&quot;label&quot;&gt;&lt;div class=&quot;num&quot;&gt;07&lt;/div&gt;&lt;h2&gt;Tools and integrations&lt;/h2&gt;&lt;/div&gt;&lt;div class=&quot;content&quot;&gt;&lt;div class=&quot;cards&quot;&gt;
+&lt;div class=&quot;card&quot;&gt;&lt;h3&gt;Notion&lt;/h3&gt;&lt;p&gt;Use it for coordination, knowledge, documentation, and shared visibility.&lt;/p&gt;&lt;/div&gt;
+&lt;div class=&quot;card&quot;&gt;&lt;h3&gt;Specialist tools&lt;/h3&gt;&lt;p&gt;Keep Linear, Jira, Attio, Sheets, or chat where they serve the work best.&lt;/p&gt;&lt;/div&gt;
+&lt;div class=&quot;card&quot;&gt;&lt;h3&gt;Integrations&lt;/h3&gt;&lt;p&gt;Reduce duplicate entry and tool-switching while preserving source ownership.&lt;/p&gt;&lt;/div&gt;
+&lt;div class=&quot;card&quot;&gt;&lt;h3&gt;Automation&lt;/h3&gt;&lt;p&gt;Move data and reduce repetition without replacing context, judgment, or agency.&lt;/p&gt;&lt;/div&gt;
+&lt;/div&gt;&lt;/div&gt;&lt;/section&gt;
+&lt;section class=&quot;section&quot;&gt;&lt;div class=&quot;label&quot;&gt;&lt;div class=&quot;num&quot;&gt;08&lt;/div&gt;&lt;h2&gt;Workflow and governance&lt;/h2&gt;&lt;/div&gt;&lt;div class=&quot;content&quot;&gt;&lt;div class=&quot;ops&quot;&gt;&lt;p class=&quot;big&quot;&gt;A workflow should reveal triggers, inputs, decisions, approvals, owners, handoffs, dependencies, loops, outputs, and maintenance.&lt;/p&gt;&lt;ul class=&quot;plain-list&quot;&gt;&lt;li&gt;Role-based access and visibility&lt;/li&gt;&lt;li&gt;Explicit owners and maintainers&lt;/li&gt;&lt;li&gt;Publication paths from private to shared&lt;/li&gt;&lt;li&gt;Version history and archives&lt;/li&gt;&lt;li&gt;Secure handoff and access removal&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;/div&gt;&lt;/section&gt;
+&lt;section class=&quot;section&quot;&gt;&lt;div class=&quot;label&quot;&gt;&lt;div class=&quot;num&quot;&gt;09&lt;/div&gt;&lt;h2&gt;Adoption and learning&lt;/h2&gt;&lt;/div&gt;&lt;div class=&quot;content&quot;&gt;&lt;div class=&quot;cards&quot;&gt;
+&lt;div class=&quot;card&quot;&gt;&lt;h3&gt;Participate&lt;/h3&gt;&lt;p&gt;People recognize their own input in the system.&lt;/p&gt;&lt;/div&gt;&lt;div class=&quot;card&quot;&gt;&lt;h3&gt;Stage&lt;/h3&gt;&lt;p&gt;Launch in bounded steps with real-work workshops.&lt;/p&gt;&lt;/div&gt;
+&lt;div class=&quot;card&quot;&gt;&lt;h3&gt;Teach&lt;/h3&gt;&lt;p&gt;Use guides, videos, office hours, walkthroughs, and practice. Training is infrastructure.&lt;/p&gt;&lt;/div&gt;&lt;div class=&quot;card&quot;&gt;&lt;h3&gt;Sponsor&lt;/h3&gt;&lt;p&gt;Pair executive endorsement with local ownership and clear support paths.&lt;/p&gt;&lt;/div&gt;
+&lt;/div&gt;&lt;/div&gt;&lt;/section&gt;
+&lt;section class=&quot;section&quot;&gt;&lt;div class=&quot;label&quot;&gt;&lt;div class=&quot;num&quot;&gt;10&lt;/div&gt;&lt;h2&gt;Measure impact&lt;/h2&gt;&lt;/div&gt;&lt;div class=&quot;content&quot;&gt;&lt;div class=&quot;measure&quot;&gt;&lt;ul class=&quot;plain-list&quot;&gt;&lt;li&gt;Can people retrieve what they need?&lt;/li&gt;&lt;li&gt;Are cycle time and decision delays improving?&lt;/li&gt;&lt;li&gt;Are bottlenecks and dependencies visible?&lt;/li&gt;&lt;li&gt;Is duplicate entry decreasing?&lt;/li&gt;&lt;li&gt;Do users feel confident and supported?&lt;/li&gt;&lt;/ul&gt;&lt;div&gt;&lt;p class=&quot;quote&quot;&gt;Feedback is incomplete until it changes a decision, workflow, priority, product, or piece of documentation.&lt;/p&gt;&lt;p&gt;Observe behavior, not just analytics. Iterate intentionally through evidence and periodic review, not constant churn.&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/section&gt;
+&lt;section class=&quot;section&quot;&gt;&lt;div class=&quot;label&quot;&gt;&lt;div class=&quot;num&quot;&gt;11&lt;/div&gt;&lt;h2&gt;Scale, resilience, and ethics&lt;/h2&gt;&lt;/div&gt;&lt;div class=&quot;content&quot;&gt;&lt;div class=&quot;cards&quot; style=&quot;margin-bottom:18px&quot;&gt;
+&lt;div class=&quot;card&quot;&gt;&lt;h3&gt;Shared structure&lt;/h3&gt;&lt;p&gt;Establish taxonomies, workflow ownership, permissions, and integration patterns before scale arrives.&lt;/p&gt;&lt;/div&gt;&lt;div class=&quot;card&quot;&gt;&lt;h3&gt;Knowledge continuity&lt;/h3&gt;&lt;p&gt;Document decisions and reduce dependence on any one person.&lt;/p&gt;&lt;/div&gt;
+&lt;div class=&quot;card&quot;&gt;&lt;h3&gt;Stewardship&lt;/h3&gt;&lt;p&gt;Assign owners, review routines, maintenance, and support.&lt;/p&gt;&lt;/div&gt;&lt;div class=&quot;card&quot;&gt;&lt;h3&gt;Adaptability&lt;/h3&gt;&lt;p&gt;Preserve history while evolving without destroying coherence.&lt;/p&gt;&lt;/div&gt;
+&lt;/div&gt;&lt;div class=&quot;ethics&quot;&gt;&lt;div class=&quot;statement&quot;&gt;Systems shape attention, agency, participation, and power.&lt;/div&gt;&lt;p&gt;Create safe ways to surface mistakes, uncertainty, dissent, and early evidence. Distribute context and voice. Avoid surveillance, exclusion, alienation, and hidden human costs.&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;&lt;/section&gt;
+&lt;footer&gt;&lt;div class=&quot;eyebrow&quot;&gt;The ambition&lt;/div&gt;&lt;p class=&quot;closing&quot;&gt;The goal is not a tidier workplace. It is an organization that can learn.&lt;/p&gt;&lt;p class=&quot;formula&quot;&gt;Capture experience → turn information into action → examine outcomes → create new knowledge&lt;/p&gt;&lt;div class=&quot;credit&quot;&gt;&lt;span&gt;Systems design&lt;/span&gt;&lt;span&gt;People + information + workflows + technology + power + learning&lt;/span&gt;&lt;/div&gt;&lt;/footer&gt;
+&lt;/main&gt;
+&lt;script&gt;(()=&gt;{const send=()=&gt;parent.postMessage({type:&#x27;frame-size&#x27;,id:&#x27;systems&#x27;,height:Math.max(document.body.scrollHeight,document.documentElement.scrollHeight)},&#x27;*&#x27;);addEventListener(&#x27;load&#x27;,send);new ResizeObserver(send).observe(document.documentElement);setTimeout(send,120);setTimeout(send,700)})();&lt;/script&gt;&lt;/body&gt;
+&lt;/html&gt;
+"></iframe></div>
+    </details><details class="chapter" id="communication" data-title="collaboration &amp; communication">
+      <summary><span class="num">04</span><span class="summary-copy"><strong>Collaboration &amp; communication</strong><span>Match context to the moment and make ownership, cadence, and next steps clear</span></span><span class="toggle" aria-hidden="true"></span></summary>
+      <div class="frame-wrap"><iframe id="frame-communication" title="Collaboration &amp; communication" loading="lazy" srcdoc="&lt;!DOCTYPE html&gt;
+
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;utf-8&quot;/&gt;
+&lt;meta content=&quot;width=device-width,initial-scale=1&quot; name=&quot;viewport&quot;/&gt;
+&lt;title&gt;Collaboration &amp;amp; Communication | One-Page Explainer&lt;/title&gt;
+&lt;style&gt;
+:root{--ink:#0b0b0b;--paper:#fff;--soft:#f2f2f2;--line:#bdbdbd}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;background:var(--paper);color:var(--ink);font-family:Arial,Helvetica,sans-serif}
+body{padding:clamp(18px,3vw,38px)}
+main{max-width:1180px;margin:0 auto;border-top:3px solid var(--ink)}
+header{display:grid;grid-template-columns:1.15fr .85fr;gap:40px;padding:18px 0 22px;border-bottom:1px solid var(--ink)}
+.eyebrow,.number{font-size:12px;font-weight:700;letter-spacing:.15em;text-transform:uppercase}
+h1{font-size:clamp(42px,6vw,76px);line-height:.88;letter-spacing:-.06em;margin:14px 0 0}
+.lede{align-self:end;font-size:clamp(18px,2vw,25px);line-height:1.35;margin:0;max-width:500px}
+.lede b{background:var(--ink);color:var(--paper);padding:2px 5px}
+section{padding:18px 0;border-bottom:1px solid var(--ink)}
+.section-head{display:flex;justify-content:space-between;align-items:baseline;gap:20px;margin-bottom:20px}
+h2{font-size:clamp(22px,3vw,38px);letter-spacing:-.035em;margin:0}
+.loop{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--ink)}
+.step{min-height:122px;padding:14px;display:flex;flex-direction:column;justify-content:space-between}
+.step+.step{border-left:1px solid var(--ink)}
+.step:nth-child(even){background:var(--soft)}
+.step strong{font-size:clamp(17px,1.8vw,24px)}
+.step span{font-size:12px;line-height:1.35;color:#4d4d4d}
+.context{display:grid;grid-template-columns:.76fr 1.24fr;gap:36px;align-items:center}
+.context-copy p{font-size:17px;line-height:1.45;margin:12px 0 0;max-width:430px}
+.levels{border:1px solid var(--ink)}
+.level{display:grid;grid-template-columns:140px 1fr;min-height:76px;align-items:center}
+.level+.level{border-top:1px solid var(--ink)}
+.level:nth-child(2){background:var(--soft)}
+.level strong{height:100%;display:flex;align-items:center;padding:14px;border-right:1px solid var(--ink);font-size:20px}
+.level p{margin:0;padding:14px;font-size:14px;line-height:1.35}
+.grid{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--ink)}
+.card{min-height:124px;padding:18px;display:grid;grid-template-columns:38px 1fr;gap:10px;align-content:start}
+.card:nth-child(odd){border-right:1px solid var(--ink)}
+.card:nth-child(-n+2){border-bottom:1px solid var(--ink)}
+.card.dark{background:var(--ink);color:var(--paper)}
+.card .index{font-size:12px;font-weight:700;letter-spacing:.1em;padding-top:4px}
+h3{font-size:clamp(19px,2vw,27px);letter-spacing:-.02em;margin:0 0 9px}
+.card p{font-size:15px;line-height:1.42;margin:0;max-width:460px}
+footer{display:grid;grid-template-columns:1.25fr .75fr;gap:30px;padding:18px 0 0}
+.quote{font-family:Georgia,serif;font-size:clamp(24px,3.3vw,42px);line-height:1.1;letter-spacing:-.025em}
+.standards{border-left:1px solid var(--ink);padding-left:24px}
+.standards span{display:block;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;margin-bottom:12px}
+.standards ul{list-style:none;padding:0;margin:0;font-size:18px;line-height:1.55}
+.standards li:before{content:&#x27;• &#x27;;font-weight:700}
+@media(max-width:760px){body{padding:20px}header,footer{grid-template-columns:1fr}.lede{align-self:start}.loop{grid-template-columns:1fr 1fr}.step{min-height:110px}.step+.step{border-left:0}.step:nth-child(even){border-left:1px solid var(--ink)}.step:nth-child(n+3){border-top:1px solid var(--ink)}.grid{grid-template-columns:1fr}.card{min-height:auto}.card:nth-child(odd){border-right:0}.card:nth-child(-n+3){border-bottom:1px solid var(--ink)}.standards{border-left:0;border-top:1px solid var(--ink);padding:20px 0 0}.context{grid-template-columns:1fr;gap:18px}.level{grid-template-columns:110px 1fr}.level strong{font-size:17px}}
+&lt;/style&gt;
+&lt;style&gt;
+html{background:#fff!important;color:#111!important;overflow-x:hidden!important}
+body{margin:0!important;filter:grayscale(1);background:#fff!important;overflow-x:hidden!important}
+*{box-sizing:border-box} a{color:#111!important}
+@media(max-width:600px){body{padding-left:0!important;padding-right:0!important}}
+&lt;/style&gt;&lt;/head&gt;
+&lt;body&gt;
+&lt;main&gt;
+&lt;header&gt;
+&lt;div&gt;&lt;h1&gt;Collaboration &amp;amp;&lt;br/&gt;Communication&lt;/h1&gt;&lt;/div&gt;
+&lt;p class=&quot;lede&quot;&gt;Communication is designed around &lt;b&gt;what people need to know&lt;/b&gt;, making ownership, cadence, and the next action unmistakably clear.&lt;/p&gt;
+&lt;/header&gt;
+&lt;section&gt;
+&lt;div class=&quot;section-head&quot;&gt;&lt;h2&gt;Four moves. One clear communication loop.&lt;/h2&gt;&lt;span class=&quot;number&quot;&gt;01 · Practice&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&quot;loop&quot;&gt;
+&lt;div class=&quot;step&quot;&gt;&lt;strong&gt;Prepare&lt;/strong&gt;&lt;span&gt;Use a focused agenda to define the purpose and decisions needed.&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&quot;step&quot;&gt;&lt;strong&gt;Capture&lt;/strong&gt;&lt;span&gt;Keep live notes so context, questions, and decisions stay visible.&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&quot;step&quot;&gt;&lt;strong&gt;Clarify&lt;/strong&gt;&lt;span&gt;Name the action, owner, priority, and timing before the conversation ends.&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&quot;step&quot;&gt;&lt;strong&gt;Follow through&lt;/strong&gt;&lt;span&gt;Send a structured recap that makes the next step easy to find and act on.&lt;/span&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/section&gt;
+&lt;section&gt;
+&lt;div class=&quot;section-head&quot;&gt;&lt;h2&gt;Match the depth to the moment&lt;/h2&gt;&lt;span class=&quot;number&quot;&gt;02 · Context&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&quot;context&quot;&gt;
+&lt;div class=&quot;context-copy&quot;&gt;&lt;h3&gt;One message can need three versions.&lt;/h3&gt;&lt;p&gt;The audience, decision, and moment determine how much context belongs in the communication.&lt;/p&gt;&lt;/div&gt;
+&lt;div aria-label=&quot;Three levels of communication context&quot; class=&quot;levels&quot;&gt;
+&lt;div class=&quot;level&quot;&gt;&lt;strong&gt;Low&lt;/strong&gt;&lt;p&gt;Outcome, status, decision, and next step. Best for quick orientation.&lt;/p&gt;&lt;/div&gt;
+&lt;div class=&quot;level&quot;&gt;&lt;strong&gt;Medium&lt;/strong&gt;&lt;p&gt;Reasoning, tradeoffs, dependencies, and actions. Best for active collaborators.&lt;/p&gt;&lt;/div&gt;
+&lt;div class=&quot;level&quot;&gt;&lt;strong&gt;High&lt;/strong&gt;&lt;p&gt;Background, evidence, process, and detail. Best for owners, learning, and handover.&lt;/p&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/section&gt;
+&lt;section&gt;
+&lt;div class=&quot;section-head&quot;&gt;&lt;h2&gt;Why action items get lost&lt;/h2&gt;&lt;span class=&quot;number&quot;&gt;03 · Friction&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&quot;grid&quot;&gt;
+&lt;article class=&quot;card dark&quot;&gt;&lt;span class=&quot;index&quot;&gt;01&lt;/span&gt;&lt;div&gt;&lt;h3&gt;Ownership stays implied&lt;/h3&gt;&lt;p&gt;Everyone hears the task, but no one is clearly responsible for moving it.&lt;/p&gt;&lt;/div&gt;&lt;/article&gt;
+&lt;article class=&quot;card&quot;&gt;&lt;span class=&quot;index&quot;&gt;02&lt;/span&gt;&lt;div&gt;&lt;h3&gt;Detail competes with priority&lt;/h3&gt;&lt;p&gt;Important actions disappear inside explanations that are too dense for the moment.&lt;/p&gt;&lt;/div&gt;&lt;/article&gt;
+&lt;article class=&quot;card&quot;&gt;&lt;span class=&quot;index&quot;&gt;03&lt;/span&gt;&lt;div&gt;&lt;h3&gt;The next step stays vague&lt;/h3&gt;&lt;p&gt;A discussion feels productive without producing a specific action or decision.&lt;/p&gt;&lt;/div&gt;&lt;/article&gt;
+&lt;article class=&quot;card dark&quot;&gt;&lt;span class=&quot;index&quot;&gt;04&lt;/span&gt;&lt;div&gt;&lt;h3&gt;The format asks too much&lt;/h3&gt;&lt;p&gt;People must search, interpret, or remember instead of seeing what matters immediately.&lt;/p&gt;&lt;/div&gt;&lt;/article&gt;
+&lt;/div&gt;
+&lt;/section&gt;
+&lt;footer&gt;
+&lt;div class=&quot;quote&quot;&gt;Simplify the format, not the thinking.&lt;/div&gt;
+&lt;div class=&quot;standards&quot;&gt;&lt;span&gt;Every update should create&lt;/span&gt;&lt;ul&gt;&lt;li&gt;Clarity&lt;/li&gt;&lt;li&gt;Alignment&lt;/li&gt;&lt;li&gt;Action&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;
+&lt;/footer&gt;
+&lt;/main&gt;
+&lt;script&gt;(()=&gt;{const send=()=&gt;parent.postMessage({type:&#x27;frame-size&#x27;,id:&#x27;communication&#x27;,height:Math.max(document.body.scrollHeight,document.documentElement.scrollHeight)},&#x27;*&#x27;);addEventListener(&#x27;load&#x27;,send);new ResizeObserver(send).observe(document.documentElement);setTimeout(send,120);setTimeout(send,700)})();&lt;/script&gt;&lt;/body&gt;
+&lt;/html&gt;
+"></iframe></div>
+    </details><details class="chapter" id="projects" data-title="project management">
+      <summary><span class="num">05</span><span class="summary-copy"><strong>Project management</strong><span>Turn shared goals into coordinated, visible, achievable work</span></span><span class="toggle" aria-hidden="true"></span></summary>
+      <div class="frame-wrap"><iframe id="frame-projects" title="Project management" loading="lazy" srcdoc="&lt;!DOCTYPE html&gt;
+
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;utf-8&quot;/&gt;
+&lt;meta content=&quot;width=device-width, initial-scale=1&quot; name=&quot;viewport&quot;/&gt;
+&lt;title&gt;Project Management as Shared Clarity&lt;/title&gt;
+&lt;style&gt;
+  :root { --ink:#0b0b0b; --paper:#fff; --line:#0b0b0b; --muted:#555; }
+  * { box-sizing:border-box; }
+  html, body { margin:0; background:var(--paper); color:var(--ink); font-family:Arial, Helvetica, sans-serif; }
+  body { padding:14px; }
+  main { width:min(1400px, 100%); margin:0 auto; border:2px solid var(--line); background:#fff; }
+  header { display:grid; grid-template-columns:1.55fr .8fr; border-bottom:2px solid var(--line); }
+  .title { padding:24px 28px 22px; }
+  .kicker { margin:0 0 12px; font-size:13px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; }
+  h1 { margin:0; max-width:880px; font-size:clamp(40px,4.4vw,63px); line-height:.94; letter-spacing:-.055em; }
+  .definition { display:flex; flex-direction:column; justify-content:space-between; padding:24px 26px; border-left:2px solid var(--line); }
+  .definition strong { font-size:24px; line-height:1.1; letter-spacing:-.02em; }
+  .definition p { margin:28px 0 0; font-size:17px; line-height:1.4; }
+  .grid { display:grid; grid-template-columns:repeat(12,1fr); }
+  section { padding:16px 20px; border-right:1px solid var(--line); border-bottom:1px solid var(--line); }
+  section:nth-child(3n) { border-right:0; }
+  .third { grid-column:span 4; }
+  .half { grid-column:span 6; }
+  .wide { grid-column:span 8; }
+  .narrow { grid-column:span 4; }
+  h2 { margin:0 0 12px; font-size:19px; line-height:1.12; letter-spacing:-.02em; }
+  p { margin:0; font-size:15px; line-height:1.42; }
+  ul { margin:0; padding:0; list-style:none; }
+  li { position:relative; margin:7px 0; padding-left:17px; font-size:14px; line-height:1.35; }
+  li:before { content:&quot;&quot;; position:absolute; left:0; top:.54em; width:7px; height:1px; background:#000; }
+  .sequence { display:flex; flex-wrap:wrap; gap:8px 0; margin:4px 0 13px; }
+  .sequence span { font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:.055em; }
+  .sequence span:not(:last-child):after { content:&quot;→&quot;; display:inline-block; padding:0 7px; }
+  .chips { display:grid; grid-template-columns:repeat(2,1fr); border:1px solid #000; }
+  .chip { padding:8px 10px; min-height:51px; }
+  .chip:nth-child(odd) { border-right:1px solid #000; }
+  .chip:nth-child(-n+2) { border-bottom:1px solid #000; }
+  .chip b { display:block; font-size:12px; text-transform:uppercase; letter-spacing:.07em; }
+  .chip span { display:block; margin-top:4px; font-size:12px; line-height:1.25; }
+  .see { display:grid; grid-template-columns:70px 1fr; align-items:center; gap:16px; }
+  .see strong { display:grid; place-items:center; width:70px; height:70px; border:2px solid #000; border-radius:50%; font-size:16px; letter-spacing:.12em; }
+  .statement { font-size:18px; line-height:1.28; font-weight:700; }
+  .audiences { display:grid; grid-template-columns:repeat(4,1fr); border:1px solid #000; }
+  .audiences div { padding:11px; border-right:1px solid #000; }
+  .audiences div:last-child { border-right:0; }
+  .audiences b { display:block; font-size:12px; margin-bottom:4px; }
+  .audiences span { display:block; color:#333; font-size:11px; line-height:1.25; }
+  footer { display:grid; grid-template-columns:1.1fr 1fr; }
+  .outcome { padding:18px 24px; }
+  .outcome h2 { font-size:27px; margin-bottom:8px; }
+  .outcome p { max-width:720px; font-size:16px; }
+  .final { display:flex; align-items:center; justify-content:center; padding:18px 24px; background:#000; color:#fff; text-align:center; font-size:24px; font-weight:700; letter-spacing:-.025em; }
+  .note { color:#444; margin-top:8px; font-size:12px; }
+  @media (max-width:800px) {
+    body { padding:12px; }
+    main { min-height:0; }
+    header { grid-template-columns:1fr; }
+    .title { padding:25px 22px; }
+    h1 { font-size:44px; }
+    .definition { border-left:0; border-top:2px solid #000; padding:22px; }
+    .third,.half,.wide,.narrow { grid-column:span 12; }
+    section, section:nth-child(3n) { border-right:0; }
+    .audiences { grid-template-columns:1fr 1fr; }
+    .audiences div:nth-child(2) { border-right:0; }
+    .audiences div:nth-child(-n+2) { border-bottom:1px solid #000; }
+    footer { grid-template-columns:1fr; }
+    .final { min-height:120px; }
+  }
+  @media print {
+    @page { size: A3 landscape; margin:10mm; }
+    body { padding:0; }
+    main { width:100%; min-height:0; }
+  }
+&lt;/style&gt;
+&lt;style&gt;
+html{background:#fff!important;color:#111!important;overflow-x:hidden!important}
+body{margin:0!important;filter:grayscale(1);background:#fff!important;overflow-x:hidden!important}
+*{box-sizing:border-box} a{color:#111!important}
+@media(max-width:600px){body{padding-left:0!important;padding-right:0!important}}
+&lt;/style&gt;&lt;/head&gt;
+&lt;body&gt;
+&lt;main&gt;
+&lt;header&gt;
+&lt;div class=&quot;title&quot;&gt;
+&lt;p class=&quot;kicker&quot;&gt;Project management&lt;/p&gt;
+&lt;h1&gt;Shared clarity turns goals into coordinated, visible, achievable work.&lt;/h1&gt;
+&lt;/div&gt;
+&lt;div class=&quot;definition&quot;&gt;
+&lt;strong&gt;The core idea:&lt;br/&gt;A coordination system&lt;/strong&gt;
+&lt;p&gt;Connect purpose and outcomes, people and ownership, decisions and dependencies, resources and delivery. Project management is more than task tracking.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/header&gt;
+&lt;div class=&quot;grid&quot;&gt;
+&lt;section class=&quot;third&quot;&gt;
+&lt;h2&gt;Design from evidence&lt;/h2&gt;
+&lt;div class=&quot;sequence&quot;&gt;&lt;span&gt;Assessment&lt;/span&gt;&lt;span&gt;Stakeholder research&lt;/span&gt;&lt;span&gt;Design&lt;/span&gt;&lt;span&gt;Training&lt;/span&gt;&lt;span&gt;Handoff&lt;/span&gt;&lt;/div&gt;
+&lt;p&gt;Study workflows, communication, decisions, constraints, and preferences before choosing the system.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section class=&quot;third&quot;&gt;
+&lt;h2&gt;Protect the work&lt;/h2&gt;
+&lt;div class=&quot;chips&quot;&gt;
+&lt;div class=&quot;chip&quot;&gt;&lt;b&gt;Scope&lt;/b&gt;&lt;span&gt;Make boundaries explicit&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&quot;chip&quot;&gt;&lt;b&gt;Priority&lt;/b&gt;&lt;span&gt;Choose deliberately&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&quot;chip&quot;&gt;&lt;b&gt;Capacity&lt;/b&gt;&lt;span&gt;Plan for reality&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&quot;chip&quot;&gt;&lt;b&gt;Done&lt;/b&gt;&lt;span&gt;Agree on the outcome&lt;/span&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/section&gt;
+&lt;section class=&quot;third&quot;&gt;
+&lt;h2&gt;Make delivery visible&lt;/h2&gt;
+&lt;div class=&quot;see&quot;&gt;
+&lt;strong&gt;SEE&lt;/strong&gt;
+&lt;p&gt;Dependencies, risks, blockers, and decisions are first class project data.&lt;/p&gt;
+&lt;/div&gt;
+&lt;p class=&quot;note&quot;&gt;If it matters to delivery, give it a visible place.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section class=&quot;half&quot;&gt;
+&lt;h2&gt;Ownership moves work&lt;/h2&gt;
+&lt;p class=&quot;statement&quot;&gt;Visibility creates accountability without surveillance.&lt;/p&gt;
+&lt;p class=&quot;note&quot;&gt;Clear owners, next steps, and shared evidence reduce status chasing while keeping responsibility visible.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section class=&quot;half&quot;&gt;
+&lt;h2&gt;Meet for what matters&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Decisions and problem solving&lt;/li&gt;
+&lt;li&gt;Unresolved dependencies&lt;/li&gt;
+&lt;li&gt;Strategic reprioritization and collective learning&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p class=&quot;note&quot;&gt;Let the system carry routine status.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section class=&quot;wide&quot;&gt;
+&lt;h2&gt;One source, many views&lt;/h2&gt;
+&lt;div class=&quot;audiences&quot;&gt;
+&lt;div&gt;&lt;b&gt;Individuals&lt;/b&gt;&lt;span&gt;Immediate work and context&lt;/span&gt;&lt;/div&gt;
+&lt;div&gt;&lt;b&gt;Managers&lt;/b&gt;&lt;span&gt;Capacity, risks, and decisions&lt;/span&gt;&lt;/div&gt;
+&lt;div&gt;&lt;b&gt;Leaders&lt;/b&gt;&lt;span&gt;Milestones and strategic choices&lt;/span&gt;&lt;/div&gt;
+&lt;div&gt;&lt;b&gt;Teams&lt;/b&gt;&lt;span&gt;Shared learning and next steps&lt;/span&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;p class=&quot;note&quot;&gt;Report from the work rather than rebuilding updates elsewhere.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section class=&quot;narrow&quot;&gt;
+&lt;h2&gt;Adoption is the work&lt;/h2&gt;
+&lt;p class=&quot;statement&quot;&gt;Tools do not create behavior.&lt;/p&gt;
+&lt;p class=&quot;note&quot;&gt;Practice, sponsorship, and support do.&lt;/p&gt;
+&lt;/section&gt;
+&lt;/div&gt;
+&lt;footer&gt;
+&lt;div class=&quot;outcome&quot;&gt;
+&lt;h2&gt;Make room for meaningful work&lt;/h2&gt;
+&lt;p&gt;Let the system hold context, ownership, dependencies, decisions, history, and next steps. People can focus on the mission.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;final&quot;&gt;Shared clarity creates capacity.&lt;/div&gt;
+&lt;/footer&gt;
+&lt;/main&gt;
+&lt;script&gt;(()=&gt;{const send=()=&gt;parent.postMessage({type:&#x27;frame-size&#x27;,id:&#x27;projects&#x27;,height:Math.max(document.body.scrollHeight,document.documentElement.scrollHeight)},&#x27;*&#x27;);addEventListener(&#x27;load&#x27;,send);new ResizeObserver(send).observe(document.documentElement);setTimeout(send,120);setTimeout(send,700)})();&lt;/script&gt;&lt;/body&gt;
+&lt;/html&gt;
+"></iframe></div>
+    </details><details class="chapter" id="knowledge" data-title="knowledge management">
+      <summary><span class="num">06</span><span class="summary-copy"><strong>Knowledge management</strong><span>Build living knowledge infrastructure that turns experience into action</span></span><span class="toggle" aria-hidden="true"></span></summary>
+      <div class="frame-wrap"><iframe id="frame-knowledge" title="Knowledge management" loading="lazy" srcdoc="&lt;!DOCTYPE html&gt;
+
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;utf-8&quot;/&gt;
+&lt;meta content=&quot;width=device-width, initial-scale=1&quot; name=&quot;viewport&quot;/&gt;
+&lt;title&gt;Knowledge Management: One Page Explainer&lt;/title&gt;
+&lt;style&gt;
+  :root{--ink:#111;--muted:#5f5f5f;--line:#cfcfcf;--soft:#f4f4f4;--paper:#fff}
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--paper);color:var(--ink);font-family:Arial,Helvetica,sans-serif}
+  body{padding:12px}
+  main{max-width:1260px;margin:0 auto;border:2px solid var(--ink);background:#fff}
+  header{display:grid;grid-template-columns:1.4fr .8fr;border-bottom:2px solid var(--ink)}
+  .hero{padding:20px 26px}
+  .eyebrow{font-size:12px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;margin-bottom:12px}
+  h1{font-size:40px;line-height:.96;letter-spacing:-.04em;margin:0 0 12px;max-width:650px}
+  .lede{font-size:16px;line-height:1.35;margin:0;max-width:720px}
+  .definition{border-left:2px solid var(--ink);padding:20px 24px;display:flex;flex-direction:column;justify-content:space-between;background:var(--soft)}
+  .definition b{font-size:13px;letter-spacing:.08em;text-transform:uppercase}
+  .definition p{font-size:17px;line-height:1.35;margin:14px 0 0}
+  .flow{padding:14px 26px;border-bottom:2px solid var(--ink)}
+  .section-label{display:flex;align-items:center;gap:12px;margin-bottom:14px;font-size:12px;text-transform:uppercase;letter-spacing:.12em;font-weight:700}
+  .section-label:after{content:&quot;&quot;;height:1px;background:var(--ink);flex:1}
+  .steps{display:grid;grid-template-columns:repeat(6,1fr);border:1px solid var(--ink)}
+  .step{padding:9px 10px;min-height:56px;border-right:1px solid var(--ink)}
+  .step:last-child{border-right:0}
+  .step span{display:block;color:var(--muted);font-size:11px;margin-bottom:7px}
+  .step strong{font-size:15px}
+  .grid{display:grid;grid-template-columns:1fr 1fr 1fr}
+  .card{padding:15px 18px;border-right:1px solid var(--ink);border-bottom:1px solid var(--ink);min-height:176px}
+  .card:nth-child(3n){border-right:0}
+  .card:nth-last-child(-n+3){border-bottom:0}
+  h2{font-size:18px;letter-spacing:-.02em;margin:0 0 8px}
+  .card p{font-size:12.5px;line-height:1.35;margin:0 0 7px}
+  ul{margin:10px 0 0;padding:0;list-style:none}
+  li{font-size:11.5px;line-height:1.35;margin:4px 0;padding-left:14px;position:relative}
+  li:before{content:&quot;&quot;;position:absolute;left:0;top:.55em;width:6px;height:1px;background:var(--ink)}
+  .failure{font-size:14px!important;font-weight:700;border-left:3px solid var(--ink);padding-left:12px}
+  .network{display:grid;grid-template-columns:1fr auto 1fr;gap:8px;align-items:center;margin:13px 0}
+  .node{border:1px solid var(--ink);padding:7px;text-align:center;font-size:10.5px;font-weight:700}
+  .arrow{font-size:18px}
+  .context-row{display:grid;grid-template-columns:1fr;gap:5px;margin-top:7px}
+  .context-item{display:grid;grid-template-columns:76px 1fr;gap:8px;border-top:1px solid var(--line);padding-top:5px;font-size:10.5px;line-height:1.3}
+  .context-item:first-child{border-top:0;padding-top:0}
+  .context-item b{font-size:10px;letter-spacing:.08em}
+  .triple{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:12px}
+  .mini{border:1px solid var(--ink);padding:7px 6px;min-height:58px}
+  .mini b{display:block;font-size:11px;margin-bottom:5px}
+  .mini span{font-size:9.5px;line-height:1.2;color:#333}
+  .quote{font-size:14px!important;line-height:1.35!important;font-weight:700;margin-top:13px!important}
+  footer{border-top:2px solid var(--ink);display:grid;grid-template-columns:1.3fr .7fr}
+  .closing{padding:14px 26px;font-size:16px;line-height:1.35;font-weight:700}
+  .prompt{border-left:2px solid var(--ink);padding:14px 20px;font-size:12px;line-height:1.4;background:var(--soft)}
+  .prompt b{display:block;font-size:11px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:7px}
+  @media (max-width:800px){
+    body{padding:12px} main{border-width:1.5px} header{grid-template-columns:1fr}.definition{border-left:0;border-top:1.5px solid var(--ink)}
+    h1{font-size:38px}.hero,.definition,.flow{padding:22px}.steps{grid-template-columns:repeat(2,1fr)}
+    .step{border-bottom:1px solid var(--ink)}.step:nth-child(2n){border-right:0}.step:nth-last-child(-n+2){border-bottom:0}
+    .grid{grid-template-columns:1fr}.card,.card:nth-child(3n),.card:nth-last-child(-n+3){border-right:0;border-bottom:1px solid var(--ink)}.card:last-child{border-bottom:0}
+    footer{grid-template-columns:1fr}.prompt{border-left:0;border-top:1.5px solid var(--ink)}
+  }
+&lt;/style&gt;
+&lt;style&gt;
+html{background:#fff!important;color:#111!important;overflow-x:hidden!important}
+body{margin:0!important;filter:grayscale(1);background:#fff!important;overflow-x:hidden!important}
+*{box-sizing:border-box} a{color:#111!important}
+@media(max-width:600px){body{padding-left:0!important;padding-right:0!important}}
+&lt;/style&gt;&lt;/head&gt;
+&lt;body&gt;
+&lt;main&gt;
+&lt;header&gt;
+&lt;section class=&quot;hero&quot;&gt;
+
+&lt;h1&gt;Knowledge management is infrastructure for thought and action.&lt;/h1&gt;
+&lt;p class=&quot;lede&quot;&gt;Knowledge becomes valuable only when it is captured, connected, and used. The goal is not more storage. The goal is a living system that turns experience and information into useful output.&lt;/p&gt;
+&lt;/section&gt;
+&lt;aside class=&quot;definition&quot;&gt;
+&lt;b&gt;The premise&lt;/b&gt;
+&lt;p&gt;A second brain fails when it becomes a second storage unit: information is collected without enough context, retrieval paths, or a route to action.&lt;/p&gt;
+&lt;/aside&gt;
+&lt;/header&gt;
+&lt;section class=&quot;flow&quot;&gt;
+&lt;div class=&quot;section-label&quot;&gt;The knowledge flow: from signal to useful output&lt;/div&gt;
+&lt;div class=&quot;steps&quot;&gt;
+&lt;div class=&quot;step&quot;&gt;&lt;span&gt;01&lt;/span&gt;&lt;strong&gt;Capture&lt;/strong&gt;&lt;/div&gt;
+&lt;div class=&quot;step&quot;&gt;&lt;span&gt;02&lt;/span&gt;&lt;strong&gt;Add context&lt;/strong&gt;&lt;/div&gt;
+&lt;div class=&quot;step&quot;&gt;&lt;span&gt;03&lt;/span&gt;&lt;strong&gt;Classify&lt;/strong&gt;&lt;/div&gt;
+&lt;div class=&quot;step&quot;&gt;&lt;span&gt;04&lt;/span&gt;&lt;strong&gt;Develop&lt;/strong&gt;&lt;/div&gt;
+&lt;div class=&quot;step&quot;&gt;&lt;span&gt;05&lt;/span&gt;&lt;strong&gt;Connect&lt;/strong&gt;&lt;/div&gt;
+&lt;div class=&quot;step&quot;&gt;&lt;span&gt;06&lt;/span&gt;&lt;strong&gt;Act&lt;/strong&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/section&gt;
+&lt;section class=&quot;grid&quot;&gt;
+&lt;article class=&quot;card&quot;&gt;
+&lt;h2&gt;Classification reveals what you know&lt;/h2&gt;
+&lt;p class=&quot;failure&quot;&gt;Tags are not clerical work.&lt;/p&gt;
+&lt;p&gt;Good metadata makes retrieval and reuse possible.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Source, synopsis, and why it matters&lt;/li&gt;
+&lt;li&gt;Related people, projects, and processes&lt;/li&gt;
+&lt;li&gt;Citations, timestamps, and usage history&lt;/li&gt;
+&lt;li&gt;Review date and ownership&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/article&gt;
+&lt;article class=&quot;card&quot;&gt;
+&lt;h2&gt;Build a network, not a folder graveyard&lt;/h2&gt;
+&lt;div class=&quot;network&quot;&gt;
+&lt;div class=&quot;node&quot;&gt;One trusted original&lt;/div&gt;&lt;div class=&quot;arrow&quot;&gt;↔&lt;/div&gt;&lt;div class=&quot;node&quot;&gt;Many useful views&lt;/div&gt;
+&lt;/div&gt;
+&lt;p&gt;Give knowledge an authoritative home, then surface it through connected views. Make relationships visible.&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;People ↔ Projects ↔ Decisions&lt;/b&gt;&lt;/p&gt;
+&lt;/article&gt;
+&lt;article class=&quot;card&quot;&gt;
+&lt;h2&gt;Give the same knowledge different doors&lt;/h2&gt;
+&lt;div class=&quot;context-row&quot;&gt;
+&lt;div class=&quot;context-item&quot;&gt;&lt;b&gt;LOW CONTEXT&lt;/b&gt;&lt;span&gt;Skip to the point: decision, headline, short bullets.&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&quot;context-item&quot;&gt;&lt;b&gt;MIXED CONTEXT&lt;/b&gt;&lt;span&gt;Show me how: examples, process, screenshots.&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&quot;context-item&quot;&gt;&lt;b&gt;HIGH CONTEXT&lt;/b&gt;&lt;span&gt;Give me the full picture: history, evidence, nuance, rationale.&lt;/span&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/article&gt;
+&lt;article class=&quot;card&quot;&gt;
+&lt;h2&gt;Use tools by role, not ideology&lt;/h2&gt;
+&lt;p class=&quot;quote&quot;&gt;Integrate when appropriate. Consolidate where sensible. Do not centralize dogmatically.&lt;/p&gt;
+&lt;p&gt;Clarity about each system&#x27;s purpose, ownership, and relationship to the wider architecture matters more than tool purity.&lt;/p&gt;
+&lt;/article&gt;
+&lt;article class=&quot;card&quot;&gt;
+&lt;h2&gt;Put consequential conversation beside the work&lt;/h2&gt;
+&lt;p&gt;If a team changes a client workflow after a long discussion, the durable decision and rationale belong beside the workflow record, not only in chat or a private duplicate.&lt;/p&gt;
+&lt;p&gt;Chat can handle immediate exchange. Trackable, multi-step, or project-specific discussion needs a retrievable home.&lt;/p&gt;
+&lt;/article&gt;
+&lt;article class=&quot;card&quot;&gt;
+&lt;h2&gt;Adoption is a practice&lt;/h2&gt;
+&lt;p&gt;Installing a tool does not create a knowledge system.&lt;/p&gt;
+&lt;div class=&quot;triple&quot;&gt;
+&lt;div class=&quot;mini&quot;&gt;&lt;b&gt;Document&lt;/b&gt;&lt;span&gt;Create a usable skeleton. Preserve decisions and context.&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&quot;mini&quot;&gt;&lt;b&gt;Disseminate&lt;/b&gt;&lt;span&gt;Use reports, office hours, workshops, and predictable updates.&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&quot;mini&quot;&gt;&lt;b&gt;Practice&lt;/b&gt;&lt;span&gt;Design with users. Apply it to real work. Iterate.&lt;/span&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/article&gt;
+&lt;/section&gt;
+&lt;footer&gt;
+&lt;div class=&quot;closing&quot;&gt;Knowledge management is the deliberate design of a living memory that continuously turns information into action.&lt;br/&gt;&lt;span style=&quot;font-size:13px;font-weight:400&quot;&gt;Capture → Connect → Create&lt;/span&gt;&lt;/div&gt;
+&lt;div class=&quot;prompt&quot;&gt;&lt;b&gt;Reflection&lt;/b&gt;What valuable knowledge in your work is currently trapped in a person, a meeting, or a chat thread?&lt;/div&gt;
+&lt;/footer&gt;
+&lt;/main&gt;
+&lt;script&gt;(()=&gt;{const send=()=&gt;parent.postMessage({type:&#x27;frame-size&#x27;,id:&#x27;knowledge&#x27;,height:Math.max(document.body.scrollHeight,document.documentElement.scrollHeight)},&#x27;*&#x27;);addEventListener(&#x27;load&#x27;,send);new ResizeObserver(send).observe(document.documentElement);setTimeout(send,120);setTimeout(send,700)})();&lt;/script&gt;&lt;/body&gt;
+&lt;/html&gt;
+"></iframe></div>
+    </details><details class="chapter" id="ai" data-title="ai &amp; automation">
+      <summary><span class="num">07</span><span class="summary-copy"><strong>AI &amp; automation</strong><span>Use a human-centered, workflow-first framework for practical AI-enabled work</span></span><span class="toggle" aria-hidden="true"></span></summary>
+      <div class="frame-wrap"><iframe id="frame-ai" title="AI &amp; automation" loading="lazy" srcdoc="&lt;!DOCTYPE html&gt;
+
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;utf-8&quot;/&gt;
+&lt;meta content=&quot;width=device-width, initial-scale=1&quot; name=&quot;viewport&quot;/&gt;
+&lt;title&gt;AI and Automation Perspective&lt;/title&gt;
+&lt;style&gt;
+  :root { --ink:#000; --paper:#fff; }
+  * { box-sizing: border-box; }
+  html, body { margin:0; background:var(--paper); color:var(--ink); font-family:Arial, Helvetica, sans-serif; }
+  body { padding:28px; }
+  main { width:min(1180px, 100%); margin:0 auto; border:2px solid var(--ink); background:var(--paper); }
+  header { display:grid; grid-template-columns:1.5fr .9fr; border-bottom:2px solid var(--ink); }
+  .hero { padding:36px 40px 32px; }
+  .eyebrow { margin:0 0 12px; font-size:13px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; }
+  h1 { margin:0; max-width:760px; font-size:54px; line-height:.98; letter-spacing:-.045em; }
+  .dek { margin:18px 0 0; max-width:700px; font-size:18px; line-height:1.45; }
+  .principle { display:flex; flex-direction:column; justify-content:space-between; padding:28px 30px; color:#fff; background:#000; }
+  .principle small { font-size:12px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; }
+  .principle strong { font-size:26px; line-height:1.13; letter-spacing:-.025em; }
+  section { border-bottom:2px solid var(--ink); }
+  section:last-child { border-bottom:0; }
+  .section-head { display:grid; grid-template-columns:160px 1fr; border-bottom:1px solid var(--ink); }
+  .section-no, .section-title { padding:12px 18px; font-size:13px; font-weight:700; letter-spacing:.11em; text-transform:uppercase; }
+  .section-no { border-right:1px solid var(--ink); }
+  .grid { display:grid; }
+  .grid.four { grid-template-columns:repeat(4,1fr); }
+  .grid.two { grid-template-columns:repeat(2,1fr); }
+  article { padding:20px; min-width:0; }
+  .grid.four article:not(:last-child) { border-right:1px solid var(--ink); }
+  .grid.two article:nth-child(odd) { border-right:1px solid var(--ink); }
+  .grid.two article:nth-child(-n+2) { border-bottom:1px solid var(--ink); }
+  .q { margin:0 0 9px; font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; }
+  h2 { margin:0 0 10px; font-size:21px; line-height:1.08; letter-spacing:-.02em; }
+  p { margin:0; font-size:14px; line-height:1.42; }
+  .quote { margin-top:13px; padding-top:12px; border-top:1px solid var(--ink); font-weight:700; }
+  ul, ol { margin:10px 0 0; padding-left:18px; }
+  li { margin:4px 0; font-size:13px; line-height:1.32; }
+  .steps { display:grid; grid-template-columns:repeat(5,1fr); margin-top:13px; border:1px solid var(--ink); }
+  .steps span { padding:8px 6px; text-align:center; font-size:11px; font-weight:700; }
+  .steps span:not(:last-child) { border-right:1px solid var(--ink); }
+  .choice { display:grid; grid-template-columns:repeat(3,1fr); margin-top:12px; border:1px solid var(--ink); }
+  .choice div { padding:9px; }
+  .choice div:not(:last-child) { border-right:1px solid var(--ink); }
+  .choice b { display:block; margin-bottom:4px; font-size:11px; text-transform:uppercase; }
+  .choice span { font-size:11px; line-height:1.28; display:block; }
+  .split { display:grid; grid-template-columns:1fr 1fr; margin-top:12px; border:1px solid var(--ink); }
+  .split div { padding:10px; }
+  .split div:first-child { background:#000; color:#fff; }
+  .split b { display:block; margin-bottom:5px; font-size:12px; text-transform:uppercase; }
+  .split span { font-size:12px; line-height:1.3; display:block; }
+  .metrics { columns:2; column-gap:24px; margin-top:10px; }
+  .metrics li { break-inside:avoid; }
+  .closing { display:grid; grid-template-columns:1fr 2.4fr; }
+  .closing .label { padding:24px; border-right:1px solid #fff; color:#fff; background:#000; font-size:12px; font-weight:700; letter-spacing:.13em; text-transform:uppercase; }
+  .closing .statement { padding:22px 28px; color:#fff; background:#000; font-size:24px; font-weight:700; line-height:1.22; }
+  @media (max-width:850px) {
+    body { padding:14px; }
+    header { grid-template-columns:1fr; }
+    .hero { padding:28px 24px; }
+    h1 { font-size:42px; }
+    .principle { min-height:180px; }
+    .section-head { grid-template-columns:110px 1fr; }
+    .grid.four, .grid.two { grid-template-columns:1fr; }
+    .grid.four article:not(:last-child), .grid.two article:nth-child(odd) { border-right:0; }
+    .grid.four article:not(:last-child), .grid.two article:not(:last-child) { border-bottom:1px solid var(--ink); }
+    .steps, .choice { grid-template-columns:1fr; }
+    .steps span:not(:last-child), .choice div:not(:last-child) { border-right:0; border-bottom:1px solid var(--ink); }
+    .closing { grid-template-columns:1fr; }
+    .closing .label { border-right:0; border-bottom:1px solid #fff; }
+  }
+  @media print {
+    @page { size:A4 portrait; margin:8mm; }
+    body { padding:0; }
+    main { width:100%; }
+  }
+&lt;/style&gt;
+&lt;style&gt;
+html{background:#fff!important;color:#111!important;overflow-x:hidden!important}
+body{margin:0!important;filter:grayscale(1);background:#fff!important;overflow-x:hidden!important}
+*{box-sizing:border-box} a{color:#111!important}
+@media(max-width:600px){body{padding-left:0!important;padding-right:0!important}}
+&lt;/style&gt;&lt;/head&gt;
+&lt;body&gt;
+&lt;main&gt;
+&lt;header&gt;
+&lt;div class=&quot;hero&quot;&gt;
+
+&lt;h1&gt;AI &amp;amp; Automation Perspective&lt;/h1&gt;
+&lt;p class=&quot;dek&quot;&gt;A human-centered, workflow-first framework for choosing, implementing, and evaluating AI-enabled work.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class=&quot;principle&quot;&gt;
+&lt;small&gt;Core position&lt;/small&gt;
+&lt;strong&gt;AI should support the work, not replace the human system.&lt;/strong&gt;
+&lt;/div&gt;
+&lt;/header&gt;
+&lt;section&gt;
+&lt;div class=&quot;section-head&quot;&gt;&lt;div class=&quot;section-no&quot;&gt;01 / Stance&lt;/div&gt;&lt;div class=&quot;section-title&quot;&gt;Set clear boundaries&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;grid four&quot;&gt;
+&lt;article&gt;&lt;p class=&quot;q&quot;&gt;Role&lt;/p&gt;&lt;h2&gt;AI is a support layer.&lt;/h2&gt;&lt;p&gt;It should strengthen the organization without becoming a replacement for human systems.&lt;/p&gt;&lt;/article&gt;
+&lt;article&gt;&lt;p class=&quot;q&quot;&gt;Failure pattern&lt;/p&gt;&lt;h2&gt;Agents without adoption underperform.&lt;/h2&gt;&lt;p&gt;Agent-heavy setups fail when the people using them have not been trained or supported.&lt;/p&gt;&lt;p class=&quot;quote&quot;&gt;More agents does not mean more capability.&lt;/p&gt;&lt;/article&gt;
+&lt;article&gt;&lt;p class=&quot;q&quot;&gt;Human-led work&lt;/p&gt;&lt;h2&gt;Protect the work that depends on human context.&lt;/h2&gt;&lt;p&gt;Judgment, relationships, ambiguity, high stakes, and context-heavy work should remain human-led.&lt;/p&gt;&lt;/article&gt;
+&lt;article&gt;&lt;p class=&quot;q&quot;&gt;Shared language&lt;/p&gt;&lt;h2&gt;Make the boundary visible.&lt;/h2&gt;&lt;p&gt;Clarify what the machine can prepare and what people must decide. Metaphors can make the difference easy to understand.&lt;/p&gt;&lt;/article&gt;
+&lt;/div&gt;
+&lt;/section&gt;
+&lt;section&gt;
+&lt;div class=&quot;section-head&quot;&gt;&lt;div class=&quot;section-no&quot;&gt;02 / Method&lt;/div&gt;&lt;div class=&quot;section-title&quot;&gt;Design the workflow before choosing the tool&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;grid two&quot;&gt;
+&lt;article&gt;
+&lt;p class=&quot;q&quot;&gt;Starting point&lt;/p&gt;&lt;h2&gt;Begin with the real workflow.&lt;/h2&gt;
+&lt;p&gt;Map the system before selecting technology.&lt;/p&gt;
+&lt;div class=&quot;steps&quot;&gt;&lt;span&gt;People&lt;/span&gt;&lt;span&gt;Decisions&lt;/span&gt;&lt;span&gt;Handoffs&lt;/span&gt;&lt;span&gt;Pain points&lt;/span&gt;&lt;span&gt;Exceptions&lt;/span&gt;&lt;/div&gt;
+&lt;/article&gt;
+&lt;article&gt;
+&lt;p class=&quot;q&quot;&gt;Right intervention&lt;/p&gt;&lt;h2&gt;Choose the simplest capable layer.&lt;/h2&gt;
+&lt;div class=&quot;choice&quot;&gt;&lt;div&gt;&lt;b&gt;1. Fix process&lt;/b&gt;&lt;span&gt;When roles or steps are unclear.&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;2. Automate rules&lt;/b&gt;&lt;span&gt;When steps are predictable.&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;3. Use AI&lt;/b&gt;&lt;span&gt;To summarize, classify, draft, or retrieve context, with review for high-stakes work.&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/article&gt;
+&lt;article&gt;
+&lt;p class=&quot;q&quot;&gt;Readiness&lt;/p&gt;&lt;h2&gt;Readiness is operational clarity.&lt;/h2&gt;
+&lt;ul&gt;&lt;li&gt;Reliable source of truth&lt;/li&gt;&lt;li&gt;Shared names and statuses&lt;/li&gt;&lt;li&gt;Clear ownership&lt;/li&gt;&lt;li&gt;Clean inputs&lt;/li&gt;&lt;li&gt;Documented handoffs&lt;/li&gt;&lt;li&gt;Agreed exception rules&lt;/li&gt;&lt;/ul&gt;
+&lt;/article&gt;
+&lt;article&gt;
+&lt;p class=&quot;q&quot;&gt;Implementation&lt;/p&gt;&lt;h2&gt;Capture once. Connect lightly. Learn in reality.&lt;/h2&gt;
+&lt;ol&gt;&lt;li&gt;Keep each platform focused on what it does best.&lt;/li&gt;&lt;li&gt;Start with small, high-value connections.&lt;/li&gt;&lt;li&gt;Test in real operating conditions.&lt;/li&gt;&lt;li&gt;Document what works before expanding automation or agents.&lt;/li&gt;&lt;/ol&gt;
+&lt;/article&gt;
+&lt;/div&gt;
+&lt;/section&gt;
+&lt;section&gt;
+&lt;div class=&quot;section-head&quot;&gt;&lt;div class=&quot;section-no&quot;&gt;03 / Guardrails&lt;/div&gt;&lt;div class=&quot;section-title&quot;&gt;Keep people, learning, and accountability in the system&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;grid four&quot;&gt;
+&lt;article&gt;&lt;p class=&quot;q&quot;&gt;Human role&lt;/p&gt;&lt;h2&gt;Let AI prepare. Let people decide.&lt;/h2&gt;&lt;div class=&quot;split&quot;&gt;&lt;div&gt;&lt;b&gt;AI can&lt;/b&gt;&lt;span&gt;Prepare, organize, and suggest.&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;People&lt;/b&gt;&lt;span&gt;Interpret, approve, relate, decide, and handle ambiguity.&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;/article&gt;
+&lt;article&gt;&lt;p class=&quot;q&quot;&gt;Risks&lt;/p&gt;&lt;h2&gt;Failure often hides beneath efficiency.&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;Broken processes&lt;/li&gt;&lt;li&gt;Conflicting data&lt;/li&gt;&lt;li&gt;Brittle integrations&lt;/li&gt;&lt;li&gt;Hidden failures&lt;/li&gt;&lt;li&gt;Reduced team learning&lt;/li&gt;&lt;/ul&gt;&lt;/article&gt;
+&lt;article&gt;&lt;p class=&quot;q&quot;&gt;Measurement&lt;/p&gt;&lt;h2&gt;Measure the quality of work returned to people.&lt;/h2&gt;&lt;ul class=&quot;metrics&quot;&gt;&lt;li&gt;Less duplicate entry&lt;/li&gt;&lt;li&gt;Less context switching&lt;/li&gt;&lt;li&gt;Better handoffs&lt;/li&gt;&lt;li&gt;Better decisions&lt;/li&gt;&lt;li&gt;Faster retrieval&lt;/li&gt;&lt;li&gt;More high-value time&lt;/li&gt;&lt;/ul&gt;&lt;/article&gt;
+&lt;article&gt;&lt;p class=&quot;q&quot;&gt;Knowledge system&lt;/p&gt;&lt;h2&gt;It is the context layer, not the AI.&lt;/h2&gt;&lt;p&gt;Centralize decisions, documentation, and operating data so AI can support the work without becoming the source of truth.&lt;/p&gt;&lt;/article&gt;
+&lt;/div&gt;
+&lt;/section&gt;
+&lt;section&gt;
+&lt;div class=&quot;section-head&quot;&gt;&lt;div class=&quot;section-no&quot;&gt;04 / Adoption&lt;/div&gt;&lt;div class=&quot;section-title&quot;&gt;Build evidence at the pace of trust&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;grid four&quot;&gt;
+&lt;article&gt;&lt;p class=&quot;q&quot;&gt;Enthusiastic teams&lt;/p&gt;&lt;h2&gt;Turn energy into evidence.&lt;/h2&gt;&lt;p&gt;Choose one specific use case, a limited pilot, and clear success criteria. Create leverage without creating a crutch.&lt;/p&gt;&lt;/article&gt;
+&lt;article&gt;&lt;p class=&quot;q&quot;&gt;Cautious teams&lt;/p&gt;&lt;h2&gt;Lead with capability, not hype.&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;Less manual administration&lt;/li&gt;&lt;li&gt;Faster access to context&lt;/li&gt;&lt;li&gt;More time to act on information&lt;/li&gt;&lt;/ul&gt;&lt;/article&gt;
+&lt;article&gt;&lt;p class=&quot;q&quot;&gt;Start small&lt;/p&gt;&lt;h2&gt;Small pilots reveal what scale would amplify.&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;Edge cases&lt;/li&gt;&lt;li&gt;Maintenance needs&lt;/li&gt;&lt;li&gt;Adoption barriers&lt;/li&gt;&lt;li&gt;Evidence for scaling&lt;/li&gt;&lt;/ul&gt;&lt;/article&gt;
+&lt;article&gt;&lt;p class=&quot;q&quot;&gt;Practical lens&lt;/p&gt;&lt;h2&gt;Use concrete value.&lt;/h2&gt;&lt;p&gt;Show where AI reduces friction, strengthens decisions, and returns time to higher-value work without weakening judgment or learning.&lt;/p&gt;&lt;/article&gt;
+&lt;/div&gt;
+&lt;/section&gt;
+&lt;section class=&quot;closing&quot;&gt;
+&lt;div class=&quot;label&quot;&gt;Guiding principle&lt;/div&gt;
+&lt;div class=&quot;statement&quot;&gt;Design the human system first. Then use process improvement, automation, and AI deliberately to make that system more capable.&lt;/div&gt;
+&lt;/section&gt;
+&lt;/main&gt;
+&lt;script&gt;(()=&gt;{const send=()=&gt;parent.postMessage({type:&#x27;frame-size&#x27;,id:&#x27;ai&#x27;,height:Math.max(document.body.scrollHeight,document.documentElement.scrollHeight)},&#x27;*&#x27;);addEventListener(&#x27;load&#x27;,send);new ResizeObserver(send).observe(document.documentElement);setTimeout(send,120);setTimeout(send,700)})();&lt;/script&gt;&lt;/body&gt;
+&lt;/html&gt;
+"></iframe></div>
+    </details><details class="chapter" id="adoption" data-title="change &amp; adoption">
+      <summary><span class="num">08</span><span class="summary-copy"><strong>Change &amp; adoption</strong><span>Design for everyday relevance so people choose to use the system</span></span><span class="toggle" aria-hidden="true"></span></summary>
+      <div class="frame-wrap fixed"><iframe id="frame-adoption" title="Change &amp; adoption" loading="lazy" srcdoc="&lt;!DOCTYPE html&gt;
+
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;utf-8&quot;/&gt;
+&lt;meta content=&quot;width=device-width, initial-scale=1&quot; name=&quot;viewport&quot;/&gt;
+&lt;title&gt;Change Management and Adoption&lt;/title&gt;
+&lt;style&gt;
+:root{--ink:#111;--paper:#fff;--soft:#f3f3f3;--line:#d8d8d8;--muted:#666}
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;overflow:hidden;background:var(--paper);color:var(--ink);font-family:Arial,Helvetica,sans-serif}
+body{display:grid;place-items:center}
+.deck{position:relative;width:100vw;height:100vh;min-height:560px;background:var(--paper);overflow:hidden}
+.slide{position:absolute;inset:0;display:grid;grid-template-rows:auto 1fr auto;padding:clamp(28px,5vw,72px);opacity:0;visibility:hidden;transform:translateX(32px);transition:opacity .45s ease,transform .45s ease,visibility .45s}
+.slide.active{opacity:1;visibility:visible;transform:none}
+.kicker{font-size:clamp(12px,1.2vw,16px);letter-spacing:.16em;text-transform:uppercase;font-weight:700}
+h1,h2,p{margin:0}h1{font-size:clamp(48px,8vw,112px);line-height:.88;letter-spacing:-.065em;max-width:1050px}h2{font-size:clamp(40px,6vw,80px);line-height:.96;letter-spacing:-.05em;max-width:980px}.lead{font-size:clamp(20px,2.1vw,32px);line-height:1.35;max-width:820px;color:#242424}.muted{color:var(--muted)}
+.hero{align-self:center;display:grid;gap:32px}.rule{width:clamp(100px,15vw,220px);height:8px;background:var(--ink)}
+.footer{display:flex;align-items:center;justify-content:space-between;gap:20px}.nav{display:flex;gap:10px}.nav button,.reveal{appearance:none;border:1px solid var(--ink);background:var(--paper);color:var(--ink);font:700 14px Arial;padding:13px 18px;min-width:48px;min-height:44px;cursor:pointer}.nav button:hover,.nav button:focus-visible,.reveal:hover,.reveal:focus-visible{background:var(--ink);color:var(--paper);outline:none}.nav button:disabled{opacity:.28;cursor:not-allowed}.dots{display:flex;gap:9px;align-items:center}.dot{width:8px;height:8px;border:1px solid var(--ink);border-radius:50%;background:transparent}.dot.active{background:var(--ink)}
+.split{align-self:center;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(280px,.9fr);gap:clamp(40px,8vw,120px);align-items:center}.statement{font-size:clamp(42px,6.2vw,88px);font-weight:700;line-height:.95;letter-spacing:-.055em}.aside{border-left:2px solid var(--ink);padding-left:28px;display:grid;gap:22px}.aside p{font-size:clamp(18px,2vw,28px);line-height:1.35}
+.cards{align-self:center;display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.card{min-height:240px;border:1px solid var(--ink);padding:28px;display:flex;flex-direction:column;justify-content:space-between;cursor:pointer;transition:background .2s,color .2s}.card:hover,.card:focus-visible,.card.open{background:var(--ink);color:var(--paper);outline:none}.card strong{font-size:clamp(24px,3vw,42px);letter-spacing:-.04em}.card span{font-size:17px;line-height:1.4;opacity:0;transform:translateY(8px);transition:.2s}.card.open span,.card:hover span,.card:focus-visible span{opacity:1;transform:none}
+.question{align-self:center;display:grid;gap:34px}.question h2{max-width:900px}.answer{display:grid;grid-template-columns:40px minmax(0,760px);gap:20px;align-items:start;max-height:0;opacity:0;overflow:hidden;transition:max-height .4s ease,opacity .4s ease}.answer.show{max-height:240px;opacity:1}.answer .mark{width:34px;height:34px;background:var(--ink)}.answer p{font-size:clamp(20px,2.2vw,30px);line-height:1.35}
+.manifesto{align-self:center;display:grid;gap:16px;max-width:1040px}.manifesto div{font-size:clamp(42px,6.4vw,92px);font-weight:700;line-height:.95;letter-spacing:-.055em}.manifesto div:nth-child(2){color:#777}.manifesto div:nth-child(3){-webkit-text-stroke:1.5px var(--ink);color:transparent}
+.closer{align-self:center;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;gap:40px}.closer h2{font-size:clamp(50px,8vw,108px)}.stamp{width:clamp(150px,18vw,240px);aspect-ratio:1;border:2px solid var(--ink);border-radius:50%;display:grid;place-items:center;text-align:center;font-size:clamp(16px,1.6vw,24px);font-weight:700;transform:rotate(-8deg);padding:24px}
+.hint{font-size:12px;color:var(--muted);letter-spacing:.04em}
+@media(max-width:760px){.deck{min-height:500px}.slide{padding:24px}.split,.closer{grid-template-columns:1fr;gap:28px}.aside{border-left:0;border-top:2px solid var(--ink);padding:22px 0 0}.cards{grid-template-columns:1fr;gap:10px}.card{min-height:100px;padding:18px}.card span{opacity:1;transform:none}.stamp{display:none}.footer{gap:12px}.hint{display:none}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+&lt;/style&gt;
+&lt;style&gt;
+html{background:#fff!important;color:#111!important;overflow-x:hidden!important}
+body{margin:0!important;filter:grayscale(1);background:#fff!important;overflow-x:hidden!important}
+*{box-sizing:border-box} a{color:#111!important}
+@media(max-width:600px){body{padding-left:0!important;padding-right:0!important}}
+&lt;/style&gt;&lt;/head&gt;
+&lt;body&gt;
+&lt;main aria-label=&quot;Change management and adoption presentation&quot; class=&quot;deck&quot;&gt;
+&lt;section aria-hidden=&quot;false&quot; class=&quot;slide active&quot;&gt;
+&lt;div class=&quot;kicker&quot;&gt;Change management and adoption&lt;/div&gt;
+&lt;div class=&quot;hero&quot;&gt;&lt;div class=&quot;rule&quot;&gt;&lt;/div&gt;&lt;h1&gt;Build systems people choose to use.&lt;/h1&gt;&lt;p class=&quot;lead&quot;&gt;Adoption is not a launch moment. It is the result of clarity, simplicity, and relevance in everyday work.&lt;/p&gt;&lt;/div&gt;
+&lt;div class=&quot;footer&quot;&gt;&lt;span class=&quot;hint&quot;&gt;Use arrow keys, space, or the controls&lt;/span&gt;&lt;div aria-label=&quot;Presentation progress&quot; class=&quot;dots&quot;&gt;&lt;/div&gt;&lt;div class=&quot;nav&quot;&gt;&lt;button aria-label=&quot;Previous slide&quot; class=&quot;prev&quot;&gt;Back&lt;/button&gt;&lt;button aria-label=&quot;Next slide&quot; class=&quot;next&quot;&gt;Next&lt;/button&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/section&gt;
+&lt;section aria-hidden=&quot;true&quot; class=&quot;slide&quot;&gt;
+&lt;div class=&quot;kicker&quot;&gt;A better measure of success&lt;/div&gt;
+&lt;div class=&quot;split&quot;&gt;&lt;div class=&quot;statement&quot;&gt;Usage tells us what delivery cannot.&lt;/div&gt;&lt;div class=&quot;aside&quot;&gt;&lt;p&gt;The approach learns from how the system is used.&lt;/p&gt;&lt;p class=&quot;muted&quot;&gt;The experience is then refined around real behavior, not assumptions.&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;footer&quot;&gt;&lt;span class=&quot;hint&quot;&gt;Progress through the story&lt;/span&gt;&lt;div class=&quot;dots&quot;&gt;&lt;/div&gt;&lt;div class=&quot;nav&quot;&gt;&lt;button class=&quot;prev&quot;&gt;Back&lt;/button&gt;&lt;button class=&quot;next&quot;&gt;Next&lt;/button&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/section&gt;
+&lt;section aria-hidden=&quot;true&quot; class=&quot;slide&quot;&gt;
+&lt;div class=&quot;kicker&quot;&gt;When change meets resistance&lt;/div&gt;
+&lt;div class=&quot;question&quot;&gt;&lt;h2&gt;Find the people others already trust.&lt;/h2&gt;&lt;button class=&quot;reveal&quot; type=&quot;button&quot;&gt;Reveal the approach&lt;/button&gt;&lt;div class=&quot;answer&quot;&gt;&lt;div class=&quot;mark&quot;&gt;&lt;/div&gt;&lt;p&gt;The approach identifies internal champions beyond management and gives them the context and tools to lead adoption from within.&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;footer&quot;&gt;&lt;span class=&quot;hint&quot;&gt;Select reveal to explore&lt;/span&gt;&lt;div class=&quot;dots&quot;&gt;&lt;/div&gt;&lt;div class=&quot;nav&quot;&gt;&lt;button class=&quot;prev&quot;&gt;Back&lt;/button&gt;&lt;button class=&quot;next&quot;&gt;Next&lt;/button&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/section&gt;
+&lt;section aria-hidden=&quot;true&quot; class=&quot;slide&quot;&gt;
+&lt;div class=&quot;kicker&quot;&gt;Why systems fail to stick&lt;/div&gt;
+&lt;div class=&quot;split&quot;&gt;&lt;div class=&quot;statement&quot;&gt;Complexity creates distance.&lt;/div&gt;&lt;div class=&quot;aside&quot;&gt;&lt;p&gt;When a system does not fit the daily workflow, it becomes one more task.&lt;/p&gt;&lt;p class=&quot;muted&quot;&gt;The answer is not more pressure. It is better alignment.&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;footer&quot;&gt;&lt;span class=&quot;hint&quot;&gt;Designed around daily work&lt;/span&gt;&lt;div class=&quot;dots&quot;&gt;&lt;/div&gt;&lt;div class=&quot;nav&quot;&gt;&lt;button class=&quot;prev&quot;&gt;Back&lt;/button&gt;&lt;button class=&quot;next&quot;&gt;Next&lt;/button&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/section&gt;
+&lt;section aria-hidden=&quot;true&quot; class=&quot;slide&quot;&gt;
+&lt;div class=&quot;kicker&quot;&gt;Enablement that meets people where they are&lt;/div&gt;
+&lt;div class=&quot;cards&quot;&gt;
+&lt;div aria-expanded=&quot;false&quot; class=&quot;card&quot; role=&quot;button&quot; tabindex=&quot;0&quot;&gt;&lt;strong&gt;Workshops&lt;/strong&gt;&lt;span&gt;Shared practice builds confidence and creates momentum.&lt;/span&gt;&lt;/div&gt;
+&lt;div aria-expanded=&quot;false&quot; class=&quot;card&quot; role=&quot;button&quot; tabindex=&quot;0&quot;&gt;&lt;strong&gt;Documentation&lt;/strong&gt;&lt;span&gt;Clear guidance gives teams a dependable reference.&lt;/span&gt;&lt;/div&gt;
+&lt;div aria-expanded=&quot;false&quot; class=&quot;card&quot; role=&quot;button&quot; tabindex=&quot;0&quot;&gt;&lt;strong&gt;Async resources&lt;/strong&gt;&lt;span&gt;Flexible support lets people learn in the flow of work.&lt;/span&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;footer&quot;&gt;&lt;span class=&quot;hint&quot;&gt;Select each format to explore&lt;/span&gt;&lt;div class=&quot;dots&quot;&gt;&lt;/div&gt;&lt;div class=&quot;nav&quot;&gt;&lt;button class=&quot;prev&quot;&gt;Back&lt;/button&gt;&lt;button class=&quot;next&quot;&gt;Next&lt;/button&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/section&gt;
+&lt;section aria-hidden=&quot;true&quot; class=&quot;slide&quot;&gt;
+&lt;div class=&quot;kicker&quot;&gt;What improves adoption most&lt;/div&gt;
+&lt;div class=&quot;manifesto&quot;&gt;&lt;div&gt;Clarity.&lt;/div&gt;&lt;div&gt;Simplicity.&lt;/div&gt;&lt;div&gt;Daily relevance.&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;footer&quot;&gt;&lt;span class=&quot;hint&quot;&gt;The adoption standard&lt;/span&gt;&lt;div class=&quot;dots&quot;&gt;&lt;/div&gt;&lt;div class=&quot;nav&quot;&gt;&lt;button class=&quot;prev&quot;&gt;Back&lt;/button&gt;&lt;button class=&quot;next&quot;&gt;Next&lt;/button&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/section&gt;
+&lt;section aria-hidden=&quot;true&quot; class=&quot;slide&quot;&gt;
+&lt;div class=&quot;kicker&quot;&gt;The outcome&lt;/div&gt;
+&lt;div class=&quot;closer&quot;&gt;&lt;h2&gt;Change becomes part of the work, not extra work.&lt;/h2&gt;&lt;div class=&quot;stamp&quot;&gt;Built for adoption&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;footer&quot;&gt;&lt;span class=&quot;hint&quot;&gt;Return to revisit the story&lt;/span&gt;&lt;div class=&quot;dots&quot;&gt;&lt;/div&gt;&lt;div class=&quot;nav&quot;&gt;&lt;button class=&quot;prev&quot;&gt;Back&lt;/button&gt;&lt;button class=&quot;next&quot;&gt;Restart&lt;/button&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;/section&gt;
+&lt;/main&gt;
+&lt;script&gt;
+const slides=[...document.querySelectorAll(&#x27;.slide&#x27;)];
+let current=0;
+function dotsFor(slide){const holder=slide.querySelector(&#x27;.dots&#x27;);holder.innerHTML=&#x27;&#x27;;slides.forEach((_,i)=&gt;{const dot=document.createElement(&#x27;span&#x27;);dot.className=&#x27;dot&#x27;+(i===current?&#x27; active&#x27;:&#x27;&#x27;);holder.append(dot)})}
+function show(index){current=(index+slides.length)%slides.length;slides.forEach((slide,i)=&gt;{const active=i===current;slide.classList.toggle(&#x27;active&#x27;,active);slide.setAttribute(&#x27;aria-hidden&#x27;,String(!active));dotsFor(slide);const back=slide.querySelector(&#x27;.prev&#x27;);if(back)back.disabled=current===0});}
+document.querySelectorAll(&#x27;.next&#x27;).forEach(button=&gt;button.addEventListener(&#x27;click&#x27;,()=&gt;show(current+1)));
+document.querySelectorAll(&#x27;.prev&#x27;).forEach(button=&gt;button.addEventListener(&#x27;click&#x27;,()=&gt;show(current-1)));
+document.querySelectorAll(&#x27;.reveal&#x27;).forEach(button=&gt;button.addEventListener(&#x27;click&#x27;,()=&gt;{const answer=button.nextElementSibling;answer.classList.toggle(&#x27;show&#x27;);button.textContent=answer.classList.contains(&#x27;show&#x27;)?&#x27;Hide the approach&#x27;:&#x27;Reveal the approach&#x27;}));
+document.querySelectorAll(&#x27;.card&#x27;).forEach(card=&gt;{const toggle=()=&gt;{card.classList.toggle(&#x27;open&#x27;);card.setAttribute(&#x27;aria-expanded&#x27;,String(card.classList.contains(&#x27;open&#x27;)))};card.addEventListener(&#x27;click&#x27;,toggle);card.addEventListener(&#x27;keydown&#x27;,event=&gt;{if(event.key===&#x27;Enter&#x27;||event.key===&#x27; &#x27;){event.preventDefault();toggle()}})});
+addEventListener(&#x27;keydown&#x27;,event=&gt;{if(event.key===&#x27;ArrowRight&#x27;||event.key===&#x27;PageDown&#x27;||event.key===&#x27; &#x27;){if(event.target.tagName!==&#x27;BUTTON&#x27;){event.preventDefault();show(current+1)}}if(event.key===&#x27;ArrowLeft&#x27;||event.key===&#x27;PageUp&#x27;)show(current-1)});
+let startX=0;addEventListener(&#x27;touchstart&#x27;,event=&gt;startX=event.changedTouches[0].screenX,{passive:true});addEventListener(&#x27;touchend&#x27;,event=&gt;{const delta=event.changedTouches[0].screenX-startX;if(Math.abs(delta)&gt;50)show(current+(delta&lt;0?1:-1))},{passive:true});
+show(0);
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;"></iframe></div>
+    </details><details class="chapter" id="deliverables" data-title="what clients receive">
+      <summary><span class="num">09</span><span class="summary-copy"><strong>What clients receive</strong><span>Explore the systems, documentation, dashboards, training, and handover</span></span><span class="toggle" aria-hidden="true"></span></summary>
+      <div class="frame-wrap"><iframe id="frame-deliverables" title="What clients receive" loading="lazy" srcdoc="&lt;!DOCTYPE html&gt;
+
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;utf-8&quot;/&gt;
+&lt;meta content=&quot;width=device-width,initial-scale=1&quot; name=&quot;viewport&quot;/&gt;
+&lt;title&gt;Deliverables &amp;amp; Outputs | One Page Explainer&lt;/title&gt;
+&lt;style&gt;
+  :root { --ink:#000; --paper:#fff; }
+  * { box-sizing:border-box; }
+  html, body { margin:0; background:var(--paper); color:var(--ink); font-family:Arial, Helvetica, sans-serif; }
+  body { padding:24px; }
+  main { width:min(1120px, 100%); margin:0 auto; border:2px solid var(--ink); }
+  header { display:grid; grid-template-columns:1.35fr .65fr; border-bottom:2px solid var(--ink); }
+  .hero { padding:40px; }
+  .eyebrow { font-size:12px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; margin-bottom:20px; }
+  h1 { font-size:clamp(42px,6vw,76px); line-height:.92; letter-spacing:-.055em; margin:0 0 24px; max-width:720px; }
+  .lead { font-size:20px; line-height:1.4; max-width:680px; margin:0; }
+  .principle { border-left:2px solid var(--ink); padding:40px 28px; display:flex; flex-direction:column; justify-content:space-between; }
+  .principle strong { font-size:12px; text-transform:uppercase; letter-spacing:.12em; }
+  .principle p { font-size:24px; line-height:1.25; font-weight:700; margin:56px 0 0; }
+  section { border-bottom:2px solid var(--ink); }
+  section:last-child { border-bottom:0; }
+  .section-head { display:flex; justify-content:space-between; align-items:baseline; gap:20px; padding:20px 28px; border-bottom:1px solid var(--ink); }
+  h2 { font-size:24px; letter-spacing:-.025em; margin:0; }
+  .section-head p { font-size:13px; margin:0; text-align:right; }
+  .grid { display:grid; }
+  .systems { grid-template-columns:repeat(3,1fr); }
+  .card { padding:22px 24px; min-height:132px; border-right:1px solid var(--ink); border-bottom:1px solid var(--ink); }
+  .systems .card:nth-child(3n) { border-right:0; }
+  .systems .card:nth-last-child(-n+3) { border-bottom:0; }
+  .num { display:block; font-size:11px; font-weight:700; letter-spacing:.12em; margin-bottom:26px; }
+  h3 { font-size:17px; line-height:1.15; margin:0 0 8px; }
+  .card p, li { font-size:14px; line-height:1.45; margin:0; }
+  .steps { grid-template-columns:repeat(4,1fr); }
+  .steps .card { min-height:150px; }
+  .steps .card:last-child { border-right:0; }
+  .two { grid-template-columns:1fr 1fr; }
+  .panel { padding:24px 28px; }
+  .panel + .panel { border-left:1px solid var(--ink); }
+  .panel h3 { font-size:20px; margin-bottom:16px; }
+  ul { list-style:none; margin:0; padding:0; }
+  li { padding:7px 0; border-top:1px solid var(--ink); }
+  li:last-child { border-bottom:1px solid var(--ink); }
+  .portal { display:grid; grid-template-columns:.6fr 1.4fr; }
+  .portal-title { padding:28px; display:flex; align-items:center; border-right:1px solid var(--ink); }
+  .portal-title h3 { font-size:34px; letter-spacing:-.04em; }
+  .portal-items { display:grid; grid-template-columns:repeat(3,1fr); }
+  .portal-items div { padding:22px; font-size:15px; font-weight:700; border-right:1px solid var(--ink); border-bottom:1px solid var(--ink); }
+  .portal-items div:nth-child(3n) { border-right:0; }
+  .portal-items div:nth-last-child(-n+3) { border-bottom:0; }
+  .rhythm { grid-template-columns:1fr 1fr; }
+  .rhythm .card { min-height:180px; }
+  .rhythm .card:last-child { border-right:0; }
+  .continuity { grid-template-columns:repeat(3,1fr); }
+  .continuity .card:last-child { border-right:0; }
+  footer { display:grid; grid-template-columns:.55fr 1.45fr; }
+  .result-word { padding:32px 28px; border-right:2px solid var(--ink); }
+  .result-word .big { font-size:46px; line-height:.95; font-weight:700; letter-spacing:-.05em; margin:18px 0 0; }
+  .result-copy { padding:32px 36px; display:flex; align-items:center; }
+  .result-copy p { font-size:21px; line-height:1.45; margin:0; }
+  @media (max-width:760px) {
+    body { padding:12px; }
+    header, .two, .portal, footer { grid-template-columns:1fr; }
+    .principle, .panel + .panel, .portal-title, .result-word { border-left:0; border-right:0; border-top:2px solid var(--ink); }
+    .systems, .steps, .continuity, .rhythm { grid-template-columns:1fr; }
+    .card, .systems .card:nth-child(3n), .systems .card:nth-last-child(-n+3) { border-right:0; border-bottom:1px solid var(--ink); }
+    .grid .card:last-child { border-bottom:0; }
+    .portal-items { grid-template-columns:1fr 1fr; }
+    .portal-items div, .portal-items div:nth-child(3n), .portal-items div:nth-last-child(-n+3) { border-right:1px solid var(--ink); border-bottom:1px solid var(--ink); }
+    .portal-items div:nth-child(2n) { border-right:0; }
+    .portal-items div:nth-last-child(-n+2) { border-bottom:0; }
+    .section-head { align-items:flex-start; flex-direction:column; }
+    .section-head p { text-align:left; }
+  }
+  @media print {
+    @page { size:A3 portrait; margin:8mm; }
+    body { padding:0; }
+    main { width:100%; }
+  }
+&lt;/style&gt;
+&lt;style&gt;
+html{background:#fff!important;color:#111!important;overflow-x:hidden!important}
+body{margin:0!important;filter:grayscale(1);background:#fff!important;overflow-x:hidden!important}
+*{box-sizing:border-box} a{color:#111!important}
+@media(max-width:600px){body{padding-left:0!important;padding-right:0!important}}
+&lt;/style&gt;&lt;/head&gt;
+&lt;body&gt;
+&lt;main&gt;
+&lt;header&gt;
+&lt;div class=&quot;hero&quot;&gt;
+&lt;div class=&quot;eyebrow&quot;&gt;Client education · Deliverables&lt;/div&gt;
+&lt;h1&gt;What clients actually receive.&lt;/h1&gt;
+&lt;p class=&quot;lead&quot;&gt;Systems, documentation, dashboards, training resources, and a clearer way of working.&lt;/p&gt;
+&lt;/div&gt;
+&lt;aside class=&quot;principle&quot;&gt;
+&lt;strong&gt;Design principle&lt;/strong&gt;
+&lt;p&gt;Dynamic while the system evolves. Static only after it stabilizes.&lt;/p&gt;
+&lt;/aside&gt;
+&lt;/header&gt;
+&lt;section&gt;
+&lt;div class=&quot;section-head&quot;&gt;&lt;h2&gt;Documentation is layered&lt;/h2&gt;&lt;p&gt;Simple summaries lead to deeper resources, so people can choose the detail they need.&lt;/p&gt;&lt;/div&gt;
+&lt;/section&gt;
+&lt;section&gt;
+&lt;div class=&quot;section-head&quot;&gt;&lt;h2&gt;Discovery &amp;amp; diagnosis&lt;/h2&gt;&lt;p&gt;From current state to practical roadmap.&lt;/p&gt;&lt;/div&gt;
+&lt;div class=&quot;grid steps&quot;&gt;
+&lt;article class=&quot;card&quot;&gt;&lt;span class=&quot;num&quot;&gt;01&lt;/span&gt;&lt;h3&gt;Assess&lt;/h3&gt;&lt;p&gt;Current state, workflows, and information flow.&lt;/p&gt;&lt;/article&gt;
+&lt;article class=&quot;card&quot;&gt;&lt;span class=&quot;num&quot;&gt;02&lt;/span&gt;&lt;h3&gt;Listen&lt;/h3&gt;&lt;p&gt;Stakeholder insights, pain points, and obstacles.&lt;/p&gt;&lt;/article&gt;
+&lt;article class=&quot;card&quot;&gt;&lt;span class=&quot;num&quot;&gt;03&lt;/span&gt;&lt;h3&gt;Prioritize&lt;/h3&gt;&lt;p&gt;Recommendations and clear priorities.&lt;/p&gt;&lt;/article&gt;
+&lt;article class=&quot;card&quot;&gt;&lt;span class=&quot;num&quot;&gt;04&lt;/span&gt;&lt;h3&gt;Plan&lt;/h3&gt;&lt;p&gt;A practical, sequenced roadmap.&lt;/p&gt;&lt;/article&gt;
+&lt;/div&gt;
+&lt;/section&gt;
+&lt;section&gt;
+&lt;div class=&quot;section-head&quot;&gt;&lt;h2&gt;Systems designed&lt;/h2&gt;&lt;p&gt;The work behind the work.&lt;/p&gt;&lt;/div&gt;
+&lt;div class=&quot;grid systems&quot;&gt;
+&lt;article class=&quot;card&quot;&gt;&lt;span class=&quot;num&quot;&gt;01&lt;/span&gt;&lt;h3&gt;Communication&lt;/h3&gt;&lt;p&gt;How information moves between people.&lt;/p&gt;&lt;/article&gt;
+&lt;article class=&quot;card&quot;&gt;&lt;span class=&quot;num&quot;&gt;02&lt;/span&gt;&lt;h3&gt;Tasks &amp;amp; projects&lt;/h3&gt;&lt;p&gt;How commitments become coordinated action.&lt;/p&gt;&lt;/article&gt;
+&lt;article class=&quot;card&quot;&gt;&lt;span class=&quot;num&quot;&gt;03&lt;/span&gt;&lt;h3&gt;Knowledge&lt;/h3&gt;&lt;p&gt;How information stays findable and reusable.&lt;/p&gt;&lt;/article&gt;
+&lt;article class=&quot;card&quot;&gt;&lt;span class=&quot;num&quot;&gt;04&lt;/span&gt;&lt;h3&gt;Software &amp;amp; data&lt;/h3&gt;&lt;p&gt;How tools and workflows connect.&lt;/p&gt;&lt;/article&gt;
+&lt;article class=&quot;card&quot;&gt;&lt;span class=&quot;num&quot;&gt;05&lt;/span&gt;&lt;h3&gt;Reporting&lt;/h3&gt;&lt;p&gt;How progress becomes visible.&lt;/p&gt;&lt;/article&gt;
+&lt;article class=&quot;card&quot;&gt;&lt;span class=&quot;num&quot;&gt;06&lt;/span&gt;&lt;h3&gt;Milestones&lt;/h3&gt;&lt;p&gt;How outcomes stay on track.&lt;/p&gt;&lt;/article&gt;
+&lt;/div&gt;
+&lt;/section&gt;
+&lt;section&gt;
+&lt;div class=&quot;section-head&quot;&gt;&lt;h2&gt;Project management outputs&lt;/h2&gt;&lt;p&gt;Visibility, ownership, momentum.&lt;/p&gt;&lt;/div&gt;
+&lt;div class=&quot;grid continuity&quot;&gt;
+&lt;article class=&quot;card&quot;&gt;&lt;span class=&quot;num&quot;&gt;01&lt;/span&gt;&lt;h3&gt;Plan the work&lt;/h3&gt;&lt;p&gt;Timelines, Gantt charts, and implementation plans.&lt;/p&gt;&lt;/article&gt;
+&lt;article class=&quot;card&quot;&gt;&lt;span class=&quot;num&quot;&gt;02&lt;/span&gt;&lt;h3&gt;Track the work&lt;/h3&gt;&lt;p&gt;Project dashboards, task databases, and milestone trackers.&lt;/p&gt;&lt;/article&gt;
+&lt;article class=&quot;card&quot;&gt;&lt;span class=&quot;num&quot;&gt;03&lt;/span&gt;&lt;h3&gt;Clarify the work&lt;/h3&gt;&lt;p&gt;Decision logs, responsibility maps, and risk trackers.&lt;/p&gt;&lt;/article&gt;
+&lt;/div&gt;
+&lt;/section&gt;
+&lt;section&gt;
+&lt;div class=&quot;section-head&quot;&gt;&lt;h2&gt;Knowledge &amp;amp; process outputs&lt;/h2&gt;&lt;p&gt;Reusable context and clear operating instructions.&lt;/p&gt;&lt;/div&gt;
+&lt;div class=&quot;grid two&quot;&gt;
+&lt;div class=&quot;panel&quot;&gt;&lt;h3&gt;Knowledge&lt;/h3&gt;&lt;ul&gt;&lt;li&gt;Company wikis &amp;amp; knowledge bases&lt;/li&gt;&lt;li&gt;Documentation hubs &amp;amp; resource libraries&lt;/li&gt;&lt;li&gt;Onboarding materials &amp;amp; templates&lt;/li&gt;&lt;li&gt;Meeting documentation&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;
+&lt;div class=&quot;panel&quot;&gt;&lt;h3&gt;Process&lt;/h3&gt;&lt;ul&gt;&lt;li&gt;SOPs &amp;amp; workflow maps&lt;/li&gt;&lt;li&gt;Guides, worksheets &amp;amp; checklists&lt;/li&gt;&lt;li&gt;Forms &amp;amp; ownership documentation&lt;/li&gt;&lt;li&gt;Step-by-step operating instructions&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/section&gt;
+&lt;section&gt;
+&lt;div class=&quot;section-head&quot;&gt;&lt;h2&gt;The client portal&lt;/h2&gt;&lt;p&gt;One shared home.&lt;/p&gt;&lt;/div&gt;
+&lt;div class=&quot;portal&quot;&gt;
+&lt;div class=&quot;portal-title&quot;&gt;&lt;h3&gt;Client&lt;br/&gt;portal&lt;/h3&gt;&lt;/div&gt;
+&lt;div class=&quot;portal-items&quot;&gt;&lt;div&gt;Timeline&lt;/div&gt;&lt;div&gt;Dashboards&lt;/div&gt;&lt;div&gt;Tasks&lt;/div&gt;&lt;div&gt;Decisions&lt;/div&gt;&lt;div&gt;Resources&lt;/div&gt;&lt;div&gt;Deliverables&lt;/div&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/section&gt;
+&lt;section&gt;
+&lt;div class=&quot;section-head&quot;&gt;&lt;h2&gt;Engagement rhythm&lt;/h2&gt;&lt;p&gt;Clear communication at every stage.&lt;/p&gt;&lt;/div&gt;
+&lt;div class=&quot;grid rhythm&quot;&gt;
+&lt;article class=&quot;card&quot;&gt;&lt;span class=&quot;num&quot;&gt;AFTER MEETINGS&lt;/span&gt;&lt;h3&gt;Decisions become action&lt;/h3&gt;&lt;p&gt;Written recaps, decisions, action items, recordings when useful, supporting graphics, feedback surveys, and clear next steps.&lt;/p&gt;&lt;/article&gt;
+&lt;article class=&quot;card&quot;&gt;&lt;span class=&quot;num&quot;&gt;ACROSS THE PROJECT&lt;/span&gt;&lt;h3&gt;Progress stays visible&lt;/h3&gt;&lt;p&gt;Real-time dashboards for daily visibility, plus concise newsletters, milestone summaries, graphics, slides, and fuller reports.&lt;/p&gt;&lt;/article&gt;
+&lt;/div&gt;
+&lt;/section&gt;
+&lt;section&gt;
+&lt;div class=&quot;section-head&quot;&gt;&lt;h2&gt;Adoption &amp;amp; continuity&lt;/h2&gt;&lt;p&gt;Built to be maintained, not depended on.&lt;/p&gt;&lt;/div&gt;
+&lt;div class=&quot;grid continuity&quot;&gt;
+&lt;article class=&quot;card&quot;&gt;&lt;span class=&quot;num&quot;&gt;01&lt;/span&gt;&lt;h3&gt;Train&lt;/h3&gt;&lt;p&gt;Workshops, walkthroughs, guides, and concept education.&lt;/p&gt;&lt;/article&gt;
+&lt;article class=&quot;card&quot;&gt;&lt;span class=&quot;num&quot;&gt;02&lt;/span&gt;&lt;h3&gt;Hand off&lt;/h3&gt;&lt;p&gt;Final training, documented ownership, and access transfer.&lt;/p&gt;&lt;/article&gt;
+&lt;article class=&quot;card&quot;&gt;&lt;span class=&quot;num&quot;&gt;03&lt;/span&gt;&lt;h3&gt;Improve what exists&lt;/h3&gt;&lt;p&gt;Audit, reorganize, connect, migrate, and add visibility without unnecessary disruption.&lt;/p&gt;&lt;/article&gt;
+&lt;/div&gt;
+&lt;/section&gt;
+&lt;footer&gt;
+&lt;div class=&quot;result-word&quot;&gt;&lt;span class=&quot;num&quot;&gt;THE INTENDED RESULT&lt;/span&gt;&lt;div class=&quot;big&quot;&gt;Calmer.&lt;br/&gt;Clearer.&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;result-copy&quot;&gt;&lt;p&gt;&lt;strong&gt;A better way of working.&lt;/strong&gt;&lt;br/&gt;Less friction and cognitive overload. Stronger ownership. Easier access to information. Better decisions. Systems the client can operate independently.&lt;/p&gt;&lt;/div&gt;
+&lt;/footer&gt;
+&lt;/main&gt;
+&lt;script&gt;(()=&gt;{const send=()=&gt;parent.postMessage({type:&#x27;frame-size&#x27;,id:&#x27;deliverables&#x27;,height:Math.max(document.body.scrollHeight,document.documentElement.scrollHeight)},&#x27;*&#x27;);addEventListener(&#x27;load&#x27;,send);new ResizeObserver(send).observe(document.documentElement);setTimeout(send,120);setTimeout(send,700)})();&lt;/script&gt;&lt;/body&gt;
+&lt;/html&gt;
+"></iframe></div>
+    </details><details class="chapter" id="guide" data-title="the complete client guide">
+      <summary><span class="num">10</span><span class="summary-copy"><strong>The complete client guide</strong><span>Review the approach, common challenges, tools, fit, and working philosophy in one place</span></span><span class="toggle" aria-hidden="true"></span></summary>
+      <div class="frame-wrap"><iframe id="frame-guide" title="The complete client guide" loading="lazy" srcdoc="&lt;!DOCTYPE html&gt;
+
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;utf-8&quot;/&gt;
+&lt;meta content=&quot;width=device-width,initial-scale=1&quot; name=&quot;viewport&quot;/&gt;
+&lt;title&gt;How to Design Systems That People Actually Use&lt;/title&gt;
+&lt;style&gt;
+  :root{--ink:#111;--muted:#555;--line:#d8d8d8;--soft:#f6f6f6;--paper:#fff}
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--paper);color:var(--ink);font-family:Arial,Helvetica,sans-serif}
+  body{padding:28px}
+  main{width:min(1140px,100%);margin:0 auto;border:1px solid var(--ink);background:#fff}
+  header{display:grid;grid-template-columns:1.55fr .8fr;border-bottom:1px solid var(--ink)}
+  .hero{padding:34px 38px 30px}
+  .eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;margin-bottom:14px}
+  h1{font-size:45px;line-height:1.02;letter-spacing:-.045em;margin:0;max-width:760px}
+  .lede{font-size:18px;line-height:1.45;color:#333;max-width:750px;margin:18px 0 0}
+  .promise{border-left:1px solid var(--ink);padding:28px;display:flex;flex-direction:column;justify-content:space-between;background:var(--soft)}
+  .promise strong{font-size:14px;text-transform:uppercase;letter-spacing:.08em}
+  .promise p{font-size:25px;line-height:1.16;letter-spacing:-.025em;margin:14px 0 22px}
+  .promise small{font-size:13px;line-height:1.4;color:var(--muted)}
+  .process{display:grid;grid-template-columns:repeat(6,1fr);border-bottom:1px solid var(--ink)}
+  .step{padding:16px 12px;text-align:center;border-right:1px solid var(--line)}
+  .step:last-child{border-right:0}
+  .step b{display:block;font-size:14px}
+  .step span{display:block;font-size:10px;letter-spacing:.08em;margin-bottom:6px;color:var(--muted)}
+  .grid{display:grid;grid-template-columns:repeat(2,1fr)}
+  section{padding:23px 28px 22px;border-bottom:1px solid var(--line);min-height:220px}
+  section:nth-child(odd){border-right:1px solid var(--line)}
+  section:nth-last-child(-n+2){border-bottom:0}
+  h2{font-size:18px;line-height:1.2;margin:0 0 12px;letter-spacing:-.015em;display:flex;align-items:baseline;gap:10px}
+  h2 span{font-size:10px;letter-spacing:.12em;color:var(--muted)}
+  ul{margin:0;padding-left:17px}
+  li{font-size:13.3px;line-height:1.38;margin:0 0 7px}
+  li:last-child{margin-bottom:0}
+  b{font-weight:700}
+  footer{border-top:1px solid var(--ink);padding:16px 28px;display:flex;justify-content:space-between;gap:24px;font-size:12px;line-height:1.4}
+  footer strong{font-size:13px}
+  @media(max-width:760px){
+    body{padding:12px} main{border-left:0;border-right:0}
+    header{grid-template-columns:1fr}.hero{padding:28px 22px}.promise{border-left:0;border-top:1px solid var(--ink)}
+    h1{font-size:36px}.process{grid-template-columns:repeat(3,1fr)}.step:nth-child(3){border-right:0}.step:nth-child(-n+3){border-bottom:1px solid var(--line)}
+    .grid{grid-template-columns:1fr}section{border-right:0!important;border-bottom:1px solid var(--line)!important;min-height:auto;padding:22px}
+    section:last-child{border-bottom:0!important}footer{flex-direction:column}
+  }
+&lt;/style&gt;
+&lt;style&gt;
+html{background:#fff!important;color:#111!important;overflow-x:hidden!important}
+body{margin:0!important;filter:grayscale(1);background:#fff!important;overflow-x:hidden!important}
+*{box-sizing:border-box} a{color:#111!important}
+@media(max-width:600px){body{padding-left:0!important;padding-right:0!important}}
+&lt;/style&gt;&lt;/head&gt;
+&lt;body&gt;
+&lt;main&gt;
+&lt;header&gt;
+&lt;div class=&quot;hero&quot;&gt;
+&lt;div class=&quot;eyebrow&quot;&gt;Systems design, operations, and organizational psychology&lt;/div&gt;
+&lt;h1&gt;Systems that reflect how people actually work.&lt;/h1&gt;
+&lt;p class=&quot;lede&quot;&gt;The approach diagnoses how people, tools, and information interact, then creates clear, maintainable systems that reduce overload and turn inputs into action.&lt;/p&gt;
+&lt;/div&gt;
+&lt;aside class=&quot;promise&quot;&gt;
+&lt;div&gt;&lt;strong&gt;The end goal&lt;/strong&gt;&lt;p&gt;People know what to do, where things live, and how decisions get made.&lt;/p&gt;&lt;/div&gt;
+&lt;small&gt;Not just a build. A usable system with ownership, documentation, and a clean handover.&lt;/small&gt;
+&lt;/aside&gt;
+&lt;/header&gt;
+&lt;div aria-label=&quot;Engagement process&quot; class=&quot;process&quot;&gt;
+&lt;div class=&quot;step&quot;&gt;&lt;span&gt;01&lt;/span&gt;&lt;b&gt;Audit&lt;/b&gt;&lt;/div&gt;
+&lt;div class=&quot;step&quot;&gt;&lt;span&gt;02&lt;/span&gt;&lt;b&gt;Design&lt;/b&gt;&lt;/div&gt;
+&lt;div class=&quot;step&quot;&gt;&lt;span&gt;03&lt;/span&gt;&lt;b&gt;Build&lt;/b&gt;&lt;/div&gt;
+&lt;div class=&quot;step&quot;&gt;&lt;span&gt;04&lt;/span&gt;&lt;b&gt;Iterate&lt;/b&gt;&lt;/div&gt;
+&lt;div class=&quot;step&quot;&gt;&lt;span&gt;05&lt;/span&gt;&lt;b&gt;Educate&lt;/b&gt;&lt;/div&gt;
+&lt;div class=&quot;step&quot;&gt;&lt;span&gt;06&lt;/span&gt;&lt;b&gt;Handover&lt;/b&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;grid&quot;&gt;
+&lt;section&gt;
+&lt;h2&gt;&lt;span&gt;01&lt;/span&gt; What the approach does&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;b&gt;Core work:&lt;/b&gt; diagnose patterns across people, tools, and information, then make the system transferable across teams.&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;Typical problems:&lt;/b&gt; too many tools, unclear ownership, lost information, role ambiguity, and constant overwhelm.&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;Difference:&lt;/b&gt; this blends operations with behavioral insight, rather than focusing only on execution or tooling.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/section&gt;
+&lt;section&gt;
+&lt;h2&gt;&lt;span&gt;02&lt;/span&gt; How the work happens&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;b&gt;Audit:&lt;/b&gt; map workflows, pain points, stakeholders, and how work is managed day to day.&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;Build iteratively:&lt;/b&gt; adjust based on real usage and adoption issues because fixed systems often fail in practice.&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;Handover:&lt;/b&gt; assign ownership, transfer access, document the system, train the team, and step out cleanly.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/section&gt;
+&lt;section&gt;
+&lt;h2&gt;&lt;span&gt;03&lt;/span&gt; Systems and tools&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;b&gt;Common builds:&lt;/b&gt; CRMs, dashboards, knowledge bases, workflows, and internal operating systems.&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;Notion:&lt;/b&gt; a flexible workspace that can consolidate tools and scale with a team.&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;Existing stack:&lt;/b&gt; visibility can be layered over current tools instead of forcing disruptive replacement.&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;Automation:&lt;/b&gt; selective, because over-automation can make a system less effective.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/section&gt;
+&lt;section&gt;
+&lt;h2&gt;&lt;span&gt;04&lt;/span&gt; Communication and context&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;b&gt;Working rhythm:&lt;/b&gt; agendas, live notes, recaps, and structured follow-ups, tailored to actual engagement.&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;Why actions get lost:&lt;/b&gt; unclear priorities, overload, and inconsistent communication formats.&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;Layered context:&lt;/b&gt; low, medium, and high context materials let each person choose the depth they need.&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;Principle:&lt;/b&gt; simpler explanations support better understanding and adoption.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/section&gt;
+&lt;section&gt;
+&lt;h2&gt;&lt;span&gt;05&lt;/span&gt; Common challenges&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Systems fail when ownership, adoption, or communication is unclear.&lt;/li&gt;
+&lt;li&gt;Teams feel overwhelmed when information is scattered and responsibilities are undefined.&lt;/li&gt;
+&lt;li&gt;People ignore processes that were designed around ideal behavior instead of real behavior.&lt;/li&gt;
+&lt;li&gt;The recurring bottleneck is misalignment between tools, people, and expectations.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/section&gt;
+&lt;section&gt;
+&lt;h2&gt;&lt;span&gt;06&lt;/span&gt; Adoption and change&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;b&gt;Adoption strategy:&lt;/b&gt; iterate based on usage, not just delivery.&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;Resistance:&lt;/b&gt; identify internal champions beyond formal managers.&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;Why systems do not stick:&lt;/b&gt; they are too complex or disconnected from daily workflows.&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;What works:&lt;/b&gt; clarity, simplicity, relevance, workshops, documentation, and async resources.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/section&gt;
+&lt;section&gt;
+&lt;h2&gt;&lt;span&gt;07&lt;/span&gt; AI and automation&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;AI is a support layer, not a replacement for human systems.&lt;/li&gt;
+&lt;li&gt;Agent-heavy setups underperform when people are not trained to use them.&lt;/li&gt;
+&lt;li&gt;Context-heavy, judgment-based, and relational work should remain human-led.&lt;/li&gt;
+&lt;li&gt;Clear metaphors and explicit human versus machine boundaries make AI easier to understand.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/section&gt;
+&lt;section&gt;
+&lt;h2&gt;&lt;span&gt;08&lt;/span&gt; What clients receive&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;b&gt;Deliverables:&lt;/b&gt; working systems, dashboards, documentation, and training resources.&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;Client portal:&lt;/b&gt; multiple ways to consume information, including slides, video, and text.&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;Documentation:&lt;/b&gt; layered from simple summaries to deeper resources.&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;Static documents:&lt;/b&gt; created after the system stabilizes, while evolving work stays dynamic.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/section&gt;
+&lt;section&gt;
+&lt;h2&gt;&lt;span&gt;09&lt;/span&gt; Fit and positioning&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;b&gt;Best fit:&lt;/b&gt; founders and teams aligned with a collaborative, clear communication style.&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;Less suitable:&lt;/b&gt; work requiring highly specialized tools or a rigid execution-only role.&lt;/li&gt;
+&lt;li&gt;&lt;b&gt;Why deals do not convert:&lt;/b&gt; expectations, working style, or required specialization do not align.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/section&gt;
+&lt;section&gt;
+&lt;h2&gt;&lt;span&gt;10&lt;/span&gt; Working philosophy&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Design for how people actually work, not for an idealized workflow.&lt;/li&gt;
+&lt;li&gt;Blend behavioral insight with practical system design.&lt;/li&gt;
+&lt;li&gt;Choose sustainable, aligned engagements over aggressive volume.&lt;/li&gt;
+&lt;li&gt;Optimize for clarity, usability, and long-term maintainability.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/section&gt;
+&lt;/div&gt;
+&lt;footer&gt;
+&lt;strong&gt;Clarity + simplicity + relevance&lt;/strong&gt;
+&lt;span&gt;A practical operating system for people, information, decisions, and work.&lt;/span&gt;
+&lt;/footer&gt;
+&lt;/main&gt;
+&lt;script&gt;(()=&gt;{const send=()=&gt;parent.postMessage({type:&#x27;frame-size&#x27;,id:&#x27;guide&#x27;,height:Math.max(document.body.scrollHeight,document.documentElement.scrollHeight)},&#x27;*&#x27;);addEventListener(&#x27;load&#x27;,send);new ResizeObserver(send).observe(document.documentElement);setTimeout(send,120);setTimeout(send,700)})();&lt;/script&gt;&lt;/body&gt;
+&lt;/html&gt;
+"></iframe></div>
+    </details>
+<div class="endnote"><div><h2>The goal is independent ownership.</h2><p>A clearer way of working, supported by systems your team can maintain and improve.</p></div></div></section></div></main><footer>Make your work easier and more enjoyable</footer>
+<script>
+const chapters=[...document.querySelectorAll('.chapter')];
+const update=()=>{const n=chapters.filter(x=>x.open).length;document.getElementById('progress').textContent=`${n} of ${chapters.length} sections open`;};
+chapters.forEach(d=>d.addEventListener('toggle',()=>{update();if(d.open) setTimeout(()=>{const f=d.querySelector('iframe');try{if(!d.querySelector('.fixed')) f.style.height=Math.max(520,f.contentDocument.documentElement.scrollHeight)+'px'}catch(e){}},200)}));
+</script></body></html>
